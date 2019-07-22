@@ -44,7 +44,7 @@ To start you off, here's an example of what the resources in your API should loo
 
 ## Professional Requirements
 
-1. All teammates must be using Grunt to run ESLint and Browserify during development
+1. All teammates must use React and JSON-server. 
 1. Each module should have a comment at the top with the following info: author(s) and purpose of module
 1. The README for your project should include instructions on how another person can download and run the application
 
