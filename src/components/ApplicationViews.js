@@ -1,5 +1,6 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route, Link, withRouter } from 'react-router-dom';
 import React, { Component } from "react";
+import Login from './auth/Login'
 
 export default class ApplicationViews extends Component {
 
@@ -15,8 +16,8 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/friends" render={props => {
-            return null
+          path="/Login" render={props => {
+            return <Login />
             // Remove null and return the component which will show list of friends
           }}
         />
@@ -34,7 +35,6 @@ export default class ApplicationViews extends Component {
             // Remove null and return the component which will show the user's tasks
           }}
         />
-        
       </React.Fragment>
     );
   }
