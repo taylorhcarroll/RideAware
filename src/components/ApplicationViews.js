@@ -11,7 +11,6 @@ export default class ApplicationViews extends Component {
         <Route
           exact path="/" render={props => {
             return null
-            // Remove null and return the component which will show news articles
           }}
         />
 
@@ -20,24 +19,41 @@ export default class ApplicationViews extends Component {
             return <Login
                       {...props}
 						          {...this.props}/>
-            // Remove null and return the component which will show list of friends
           }}
         />
 
         <Route
-          path="/messages" render={props => {
-            return null
-            // Remove null and return the component which will show the messages
+          path="/RideHistory" render={props => {
+            return RidesList
           }}
         />
 
         <Route
-          path="/tasks" render={props => {
-            return null
-            // Remove null and return the component which will show the user's tasks
+          path="/Cars" render={props => {
+            return CarsList
           }}
         />
-      </React.Fragment>
+      <Route
+      path="/Children" render={props => {
+        return KidList
+      }}
+    />
+    <Route
+      path="/Location" render={props => {
+        return Locations
+      }}
+    />
+    <Route
+      path="/AdminDash" render={props => {
+        return AdminDash
+      }}
+    />
+     <Route
+      path="/UserDash" render={props => {
+        return UserDash
+      }}
+    />
+    </React.Fragment>
     );
   }
 }
