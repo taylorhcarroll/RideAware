@@ -42,6 +42,7 @@ class App extends Component {
 							user={this.state.user}
 							{...this.props}
 							activeUser={this.state.activeUser}
+							// currentUserId={this.props.activeUser}
 						/>
 						<ApplicationViews
 							user={this.state.user}

@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Link } from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import AuthManager from '../../modules/AuthManager';
 
@@ -23,6 +23,7 @@ class NavBar extends Component {
 	}
 
     render() {
+        console.log(this.props, "are your MAD PROPS BOIIIIII")
         return (
             <nav className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
                 <ul className="nav nav-pills nav-fill">
@@ -47,4 +48,4 @@ class NavBar extends Component {
     }
 }
 
-export default NavBar
+export default withRouter(NavBar)

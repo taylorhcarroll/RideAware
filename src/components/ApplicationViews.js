@@ -17,7 +17,9 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/Login" render={props => {
-            return <Login />
+            return <Login
+                      {...props}
+						          {...this.props}/>
             // Remove null and return the component which will show list of friends
           }}
         />
