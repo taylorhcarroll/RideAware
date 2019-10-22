@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import KidManager from '../../modules/EventsManager';
-import KidEditForm from './EditEventForm';
+
 
 class KidAddForm extends Component {
 	state = {

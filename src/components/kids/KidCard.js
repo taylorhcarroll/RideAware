@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import KidManager from '../../modules/EventsManager';
-import KidEditForm from './EditEventForm';
+
 
 class KidCard extends Component {
 	state = {

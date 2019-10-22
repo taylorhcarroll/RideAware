@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import KidManager from '../../modules/EventsManager';
-import KidEditForm from './EditEventForm';
 
-class KidsList extends Component {
+
+class UserDash extends Component {
 	state = {
 		myCard: ''
 	};
@@ -19,10 +18,10 @@ class KidsList extends Component {
 	render() {
 		return (
 			<>
-            <p>Hello this is a Kid List</p>
+            <p>Hello this is the User Dashboard</p>
             </>
 		);
 	}
 }
 
-export default KidsList;
+export default UserDash;
