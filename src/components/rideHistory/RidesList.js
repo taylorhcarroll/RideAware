@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RideCard from './RideCard'
 
 
 class RidesList extends Component {
@@ -19,6 +20,12 @@ class RidesList extends Component {
 		return (
 			<>
             <p>Hello this is a Ride List</p>
+			<RideCard
+						// key={article.id}
+						// article={article}
+						{...this.props}
+						// getData={this.getData}
+					/>
             </>
 		);
 	}

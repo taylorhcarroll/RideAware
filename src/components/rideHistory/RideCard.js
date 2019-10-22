@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import KidManager from '../../modules/EventsManager';
-import KidEditForm from './EditEventForm';
 
 class KidCard extends Component {
 	state = {
@@ -19,7 +17,7 @@ class KidCard extends Component {
 	render() {
 		return (
 			<>
-            <p>Hello this is a KidCard</p>
+            <p>Hello this is a RideCard</p>
             </>
 		);
 	}
