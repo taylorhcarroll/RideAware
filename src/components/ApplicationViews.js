@@ -30,33 +30,45 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/RideHistory" render={props => {
-            return RidesList
+            return <RidesList
+                      {...props}
+						          {...this.props}/>
           }}
         />
 
         <Route
           path="/Cars" render={props => {
-            return CarsList
+            return <CarsList
+                      {...props}
+						          {...this.props}/>
           }}
         />
       <Route
       path="/Children" render={props => {
-        return KidsList
+        return <KidsList
+                      {...props}
+						          {...this.props}/>
       }}
     />
     <Route
       path="/Locations" render={props => {
-        return LocationsList
+        return <LocationsList
+                      {...props}
+						          {...this.props}/>
       }}
     />
     <Route
       path="/AdminDash" render={props => {
-        return AdminDash
+        return <AdminDash
+                      {...props}
+						          {...this.props}/>
       }}
     />
      <Route
       path="/UserDash" render={props => {
-        return UserDash
+        return <UserDash
+                      {...props}
+						          {...this.props}/>
       }}
     />
     </React.Fragment>

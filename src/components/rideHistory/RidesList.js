@@ -18,7 +18,7 @@ class RidesList extends Component {
 	render() {
 		return (
 			<>
-            <p>Hello this is a Kid List</p>
+            <p>Hello this is a Ride List</p>
             </>
 		);
 	}

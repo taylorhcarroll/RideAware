@@ -28,16 +28,19 @@ class NavBar extends Component {
             <nav className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/">News</Link>
+                        <Link className="nav-link" to="/UserDash">Dashboard</Link>
+                    </li>
+                    {/* <li className="nav-item">
+                        <Link className="nav-link" to="/AdminDash">Admin Dashboard</Link>
+                    </li> */}
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/Children">Children</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/friends">Friends</Link>
+                        <Link className="nav-link" to="/RideHistory">Ride History</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/messages">Messages</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/tasks">Tasks</Link>
+                        <Link className="nav-link" to="/Locations">Locations</Link>
                     </li>
                     <li className='nav-item'>
                     <Link className="nav-link" onClick={this.handleLogout}>Logout</Link>
