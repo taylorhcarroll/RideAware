@@ -23,31 +23,31 @@ export default {
                 currentUserCars.forEach(id => {
                     searchString += `&carId=${id}`
                 })
-        return fetch(
-            `http://localhost:8088/carUser/?_expand=user${searchString}`
-        ).then(response => response.json())
-    })
-},
-
-    getArticles(currentUserId) {
-        // let currentUserId = parseInt(sessionStorage.getItem('activeUser'));
-        let currentUserFriends = [];
-        return FriendsManager.getFriends(currentUserId)
-            .then(data => {
-                data.forEach(obj => {
-                    currentUserFriends.push(obj.userId);
-                });
-            })
-            .then(() => {
-                let searchString = '';
-                currentUserFriends.forEach(id => {
-                    searchString += `&userId=${id}`;
-                });
                 return fetch(
-                    `http://localhost:8088/articles/?userId=${currentUserId}${searchString}&_expand=user&_sort=date&_order=desc`
-                ).then(response => response.json());
-            });
+                    `http://localhost:8088/carUser/?_expand=user${searchString}`
+                ).then(response => response.json())
+            })
     },
+
+    // getArticles(currentUserId) {
+    //     // let currentUserId = parseInt(sessionStorage.getItem('activeUser'));
+    //     let currentUserFriends = [];
+    //     return FriendsManager.getFriends(currentUserId)
+    //         .then(data => {
+    //             data.forEach(obj => {
+    //                 currentUserFriends.push(obj.userId);
+    //             });
+    //         })
+    //         .then(() => {
+    //             let searchString = '';
+    //             currentUserFriends.forEach(id => {
+    //                 searchString += `&userId=${id}`;
+    //             });
+    //             return fetch(
+    //                 `http://localhost:8088/articles/?userId=${currentUserId}${searchString}&_expand=user&_sort=date&_order=desc`
+    //             ).then(response => response.json());
+    //         });
+    // },
     createUser(user) {
         return fetch(`${remoteURL}/users/`, {
             method: 'POST',
