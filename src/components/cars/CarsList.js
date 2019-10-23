@@ -16,6 +16,7 @@ class CarsList extends Component {
 
     getData = () => {
         CarManager.getCarsbyUser(this.props.activeUser).then(cars => {
+            console.log("this is your results", cars)
             this.setState({
                 carUsers: cars
             });
