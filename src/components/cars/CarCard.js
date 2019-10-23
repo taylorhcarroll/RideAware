@@ -22,8 +22,13 @@ class CarCard extends Component {
             {unique[obj.userId] = obj}
         });
         for (const key in unique) {
+            let obj = {
+                name: unique[key].user.name,
+                userId: unique[key].user.Id
+            }
             //can I push these as an object? I want the user Id and the name//
-            nameArray.push(unique[key].user.name)
+            //nameArray.push(unique[key].user.name)
+            nameArray.push(obj)
         }
         this.setState({uniqueUsers: nameArray})
         console.log("unique", this.state.uniqueUsers)
@@ -47,7 +52,7 @@ class CarCard extends Component {
 	 }
 
 	render() {
-
+//something seems still off. I don't think there should be 2 users on all 3 cars. Additionally, I need to add spaces
 		return (
 			<>
             <p>CarCard</p>
@@ -55,8 +60,8 @@ class CarCard extends Component {
             <p>{this.props.carUser.car.make} {this.props.carUser.car.model} </p>
             <p>Year: {this.props.carUser.car.year}</p>
             <p>Guardians:
-                {this.state.carUsers.map(carUser => (
-                    carUser.user.name))}</p>
+                {this.state.uniqueUsers.map(uniqueUser => (
+                    uniqueUser.name))}</p>
       {/* <button type="button" onClick={this.handleClick}>Order ME</button> */}
             </>
 		);
