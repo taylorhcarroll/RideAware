@@ -2,11 +2,14 @@
 const remoteURL = 'http://localhost:8088';
 
 export default {
-	getUser(userName) {
-		return fetch(`${remoteURL}/users?userName=${userName}`).then(result =>
-			result.json()
-		);
-	},
+    //this will search the carUsers and get all cars from the car resource that belong to the user based on the expand
+        getCarsbyUser(currentUserId) {
+            console.log(`http://localhost:8088/cars/?userId=${currentUserId}`)
+            return fetch(
+                        `http://localhost:8088/carUser/?userId=${currentUserId}&_expand=car`
+                    ).then(response => response.json());
+        },
+
 	createUser(user) {
 		return fetch(`${remoteURL}/users/`, {
 			method: 'POST',

@@ -1,35 +1,44 @@
 import React, { Component } from 'react';
 import CarCard from './CarCard'
-// import KidManager from '../../modules/EventsManager';
+import CarManager from '../../modules/CarManager';
 // import KidEditForm from './EditEventForm';
 
 class CarsList extends Component {
-	state = {
-		myCard: ''
-	};
+    state = {
+        carUsers: []
+    };
 
-	// handleDelete = id => {
-	// 	EventsManager.delete(id).then(() => {
-	// 		this.props.getData();
-	// 	});
-	// };
+    //fetch carUser by userId
 
-	componentDidMount() {
-	 }
+    componentDidMount() {
+        this.getData();
+    }
 
-	render() {
-		return (
-			<>
-            <p>Hello this is a Car List</p>
-            <CarCard
-						// key={article.id}
-						// article={article}
-						{...this.props}
-						// getData={this.getData}
-					/>
-            </>
-		);
-	}
-}
+    getData = () => {
+        CarManager.getCarsbyUser(this.props.activeUser).then(cars => {
+            this.setState({
+                carUsers: cars
+            });
+        });
+    };
+
+    render() {
+        return (
+            <div className='mainContainer'>
+                <div className='sectionHeader'>
+                    <h1>Hello this is a Car List</h1>
+                </div>
+                    {this.state.carUsers.map(carUser => (
+                        <CarCard
+                             key={carUser.id}
+                             carUser={carUser}
+                            {...this.props}
+                        getData={this.getData}
+                        />
+                    ))}
+                </div>
+                );
+            }
+        }
 
 export default CarsList;
