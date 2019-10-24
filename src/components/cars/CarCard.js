@@ -55,8 +55,6 @@ class CarCard extends Component {
 
     render() {
         console.log("users here", this.state.uniqueUsers)
-        //something seems still off. I don't think there should be 2 users on all 3 cars.
-        //if carId === {this.props.carUser.car.id} print it to the card, otherwise, don't
         return (
             <>
                 <div id={`carCardId--${this.props.carUser.car.id}`}>
@@ -66,7 +64,6 @@ class CarCard extends Component {
                 <p>Year: {this.props.carUser.car.year}</p>
                 <p>Guardians:
                 {this.state.carUsers.map(singleCarUser => {
-                    //rework this, make the uniqueUser names a new card and import it here?//
                     return singleCarUser.carId === this.props.carUser.car.id ?
 
                     <p>{singleCarUser.user.name}  </p> : ""})

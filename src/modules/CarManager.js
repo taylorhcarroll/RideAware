@@ -48,16 +48,48 @@ export default {
     //             ).then(response => response.json());
     //         });
     // },
-    createUser(user) {
-        return fetch(`${remoteURL}/users/`, {
+    createCar(car, userId) {
+        return fetch(`${remoteURL}/cars/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(user)
-        }).then(Response => Response.json());
+            body: JSON.stringify(car)
+        }).then(Response => Response.json())
+        .then((parsedResponse) => this.addDriver(userId, parsedResponse.id))
+
     },
-    getUserById(id) {
-        return fetch(`${remoteURL}/users/${id}`).then(result => result.json());
+    getCarbyId(id) {
+        return fetch(`${remoteURL}/cars/${id}`).then(result => result.json());
+    },
+    deleteCar(id) {
+		return fetch(`${remoteURL}/cars/${id}`, {
+			method: 'DELETE'
+		}).then(result => result.json());
+    },
+    updateCar(editedCar) {
+		return fetch(`${remoteURL}/cars/${editedCar.id}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(editedCar)
+		}).then(data => data.json());
+	},
+	getCar(id) {
+		return fetch(`${remoteURL}/cars/${id}`).then(result => result.json());
+    },
+    addDriver(currentUserId, carId) {
+        let carUser = {
+            userId: currentUserId,
+            carId: carId
+        }
+        return fetch(`${remoteURL}/carUser/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(carUser)
+        }).then(Response => Response.json())
     }
 };

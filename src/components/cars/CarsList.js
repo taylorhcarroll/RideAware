@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CarCard from './CarCard'
 import CarManager from '../../modules/CarManager';
+import CarAddForm from './CarAddForm';
 // import KidEditForm from './EditEventForm';
 
 class CarsList extends Component {
@@ -25,10 +26,14 @@ class CarsList extends Component {
 
     render() {
         return (
+            <>
             <div className='mainContainer'>
                 <div className='sectionHeader'>
                     <h1>Hello this is a Car List</h1>
                 </div>
+                <CarAddForm
+                        getData={this.getData}
+                        {...this.props}/>
                     {this.state.carUsers.map(carUser => (
                         <CarCard
                              key={carUser.id}
@@ -38,6 +43,7 @@ class CarsList extends Component {
                         />
                     ))}
                 </div>
+                </>
                 );
             }
         }
