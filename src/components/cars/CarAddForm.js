@@ -9,7 +9,8 @@ class CarAddForm extends React.Component {
         model: "",
         year: "",
         color: "",
-        picURL: "placeHolder.jpeg"
+        picURL: "placeHolder.jpeg",
+        loadingStatus: false,
     };
 
     handleFieldChange = evt => {
@@ -57,21 +58,21 @@ class CarAddForm extends React.Component {
         evt.preventDefault();
         this.addNewCar();
         // this.onClose();
-        // document.querySelector('#nickName').value = '';
-        // document.querySelector('#make').value = '';
-        // document.querySelector('#year').value = '';
-        // document.querySelector('#model').value = '';
-        // document.querySelector('#color').value = '';
+        document.querySelector('#nickName').value = '';
+        document.querySelector('#make').value = '';
+        document.querySelector('#year').value = '';
+        document.querySelector('#model').value = '';
+        document.querySelector('#color').value = '';
         // document.querySelector('#picURL').value = '';
-        // this.setState({
-        //     userId: '',
-        //     nickName: "",
-        //     make: "",
-        //     model: "",
-        //     year: "",
-        //     color: "",
-        //     picURL: "placeHolder.jpeg"
-        // })
+        this.setState({
+            userId: '',
+            nickName: "",
+            make: "",
+            model: "",
+            year: "",
+            color: "",
+            picURL: "placeHolder.jpeg"
+        })
     };
 
     render() {
@@ -132,7 +133,7 @@ class CarAddForm extends React.Component {
 							<button
 								className='addCar-form-button'
 								type='primary'
-								// disabled={this.state.loadingStatus}
+								disabled={this.state.loadingStatus}
 								onClick={this.handleClick}
 								icon='add'
 							>
