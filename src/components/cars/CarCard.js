@@ -45,8 +45,8 @@ class CarCard extends Component {
             });
             // console.log("This is your Car Users by Cars you own", data)
             // console.log("this is the name", data[0].user.name)
-        }).then(() => this.removeDups(this.state.carUsers))
-            ;
+        })
+        // .then(() => this.removeDups(this.state.carUsers))
     };
 
     componentDidMount() {
