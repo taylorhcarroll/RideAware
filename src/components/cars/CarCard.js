@@ -9,11 +9,11 @@ class CarCard extends Component {
 
     //fetch carUser by carId
 
-    // handleDelete = id => {
-    // 	EventsManager.delete(id).then(() => {
-    // 		this.props.getData();
-    // 	});
-    // };
+    handleDelete = id => {
+    	CarManager.deleteCar(id).then(() => {
+    		this.props.getData();
+    	});
+    };
     // removeDups = (array) => {
     //     let unique = {}
     //     let nameArray = []
@@ -69,6 +69,16 @@ class CarCard extends Component {
                     <p>{singleCarUser.user.name}  </p> : ""})
                     }
                 </p>
+                <button
+								className='addItemBtn'
+								type='primary'
+								shape='round'
+								icon='delete'
+								size='small'
+								onClick={() => this.handleDelete(this.props.carUser.car.id)}
+							>
+								Delete Car
+							</button>
 
                 </div>
             </>
