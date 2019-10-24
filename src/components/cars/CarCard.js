@@ -14,6 +14,11 @@ class CarCard extends Component {
     		this.props.getData();
     	});
     };
+    handleDeleteDriver = id => {
+        CarManager.deleteDriver(id).then(()=> {
+    		this.props.getData();
+    	});
+    };
     // removeDups = (array) => {
     //     let unique = {}
     //     let nameArray = []
@@ -55,6 +60,7 @@ class CarCard extends Component {
 
     render() {
         console.log("users here", this.state.uniqueUsers)
+        console.log("Drivers here", this.props.carUser)
         return (
             <>
                 <div id={`carCardId--${this.props.carUser.car.id}`}>
@@ -65,8 +71,19 @@ class CarCard extends Component {
                 <p>Guardians:
                 {this.state.carUsers.map(singleCarUser => {
                     return singleCarUser.carId === this.props.carUser.car.id ?
-
-                    <p>{singleCarUser.user.name}  </p> : ""})
+                    <>
+                        <p>{singleCarUser.user.name}  </p>
+                            <button
+                            className='addItemBtn'
+                            type='primary'
+                            shape='round'
+                            icon='delete'
+                            size='small'
+                            onClick={() => this.handleDeleteDriver(this.props.carUser.id)}
+                        >
+                            Remove Driver
+                        </button> </>
+                                        : ""})
                     }
                 </p>
                 <button

@@ -67,6 +67,11 @@ export default {
 			method: 'DELETE'
 		}).then(result => result.json());
     },
+    deleteDriver(id) {
+		return fetch(`${remoteURL}/carUser/${id}`, {
+			method: 'DELETE'
+		}).then(result => result.json());
+    },
     updateCar(editedCar) {
 		return fetch(`${remoteURL}/cars/${editedCar.id}`, {
 			method: 'PUT',
