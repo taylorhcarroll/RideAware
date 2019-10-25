@@ -74,7 +74,8 @@ render() {
                                 {...this.props}
                                 // key={this.carUser.id}
                                 carUser={this.props.carUser}
-                                addDriver={this.addDriver} />
+                                getData={this.props.getData}
+                                addDriver={this.props.addDriver} />
                     {this.state.carUsers.map(singleCarUser => {
                         return singleCarUser.carId === this.props.carUser.car.id ?
                             <>
@@ -85,7 +86,7 @@ render() {
                                     shape='round'
                                     icon='delete'
                                     size='small'
-                                    onClick={() => this.handleDeleteDriver(this.props.carUser.id)}
+                                    onClick={() => this.handleDeleteDriver(singleCarUser.id)}
                                 >
                                     Remove Driver
                         </button> </>

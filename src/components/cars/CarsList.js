@@ -23,16 +23,12 @@ class CarsList extends Component {
             });
         });
     };
-    addDriver = id => {
-		const newDriver = {
-			userId: id,
-			carId: this.props.currentUserId
-		};
-		CarManager.addDriver(newDriver).then(() => {
-			this.getData()
-					//call a set state function for all modules
-				});
-	};
+    // addDriver = () => {
+	// 	CarManager.addDriver(userId, parsedResponse.id).then(() => {
+	// 		this.getData()
+	// 				//call a set state function for all modules
+	// 			});
+	// };
     render() {
         return (
             <>
@@ -49,6 +45,7 @@ class CarsList extends Component {
                              key={carUser.id}
                              carUser={carUser}
                             {...this.props}
+                            addDriver={this.addDriver}
                         getData={this.getData}
                         />
                     ))}

@@ -51,7 +51,8 @@ class CarDriverSearch extends Component {
 						addDriver={this.props.addDriver}
                         key={driver.id}
                         driver={driver}
-						carUser={this.props.carUser}
+                        carUser={this.props.carUser}
+                        getData={this.props.getData}
 					/>
 				))}
 			</section>

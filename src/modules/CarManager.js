@@ -84,9 +84,9 @@ export default {
 	getCar(id) {
 		return fetch(`${remoteURL}/cars/${id}`).then(result => result.json());
     },
-    addDriver(currentUserId, carId) {
+    addDriver(userId, carId) {
         let carUser = {
-            userId: currentUserId,
+            userId: userId,
             carId: carId
         }
         return fetch(`${remoteURL}/carUser/`, {
