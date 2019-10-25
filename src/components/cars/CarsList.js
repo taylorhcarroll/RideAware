@@ -23,7 +23,16 @@ class CarsList extends Component {
             });
         });
     };
-
+    addDriver = id => {
+		const newDriver = {
+			userId: id,
+			carId: this.props.currentUserId
+		};
+		CarManager.addDriver(newDriver).then(() => {
+			this.getData()
+					//call a set state function for all modules
+				});
+	};
     render() {
         return (
             <>
@@ -33,6 +42,7 @@ class CarsList extends Component {
                 </div>
                 <CarAddForm
                         getData={this.getData}
+                        addDriver={this.addDriver}
                         {...this.props}/>
                     {this.state.carUsers.map(carUser => (
                         <CarCard

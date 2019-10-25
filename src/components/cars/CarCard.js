@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CarManager from '../../modules/CarManager'
+import CarDriverSearch from './CarDriverSearch'
 
 class CarCard extends Component {
     state = {
@@ -10,97 +11,103 @@ class CarCard extends Component {
     //fetch carUser by carId
 
     handleDelete = id => {
-    	CarManager.deleteCar(id).then(() => {
-    		this.props.getData();
-    	});
+        CarManager.deleteCar(id).then(() => {
+            this.props.getData();
+        });
     };
     handleDeleteDriver = id => {
-        CarManager.deleteDriver(id).then(()=> {
-    		this.props.getData();
-    	});
+        CarManager.deleteDriver(id).then(() => {
+            this.props.getData();
+        });
     };
-    // removeDups = (array) => {
-    //     let unique = {}
-    //     let nameArray = []
-    //     array.forEach(obj => {
-    //         if (!unique[obj.userId]) { unique[obj.userId] = obj }
-    //     });
-    //     for (const key in unique) {
-    //         let obj = {
-    //             name: unique[key].user.name,
-    //             userId: unique[key].user.id,
-    //             carId: unique[key].carId
-    //         }
-    //         //can I push these as an object? I want the user Id and the name//
-    //         //nameArray.push(unique[key].user.name)
-    //         nameArray.push(obj)
-    //     }
-    //     this.setState({ uniqueUsers: nameArray }, () => {
-    //         console.log("unique", this.state.uniqueUsers)
-    //         console.log("carUsers", this.state.carUsers)
-    //     })
+// removeDups = (array) => {
+//     let unique = {}
+//     let nameArray = []
+//     array.forEach(obj => {
+//         if (!unique[obj.userId]) { unique[obj.userId] = obj }
+//     });
+//     for (const key in unique) {
+//         let obj = {
+//             name: unique[key].user.name,
+//             userId: unique[key].user.id,
+//             carId: unique[key].carId
+//         }
+//         //can I push these as an object? I want the user Id and the name//
+//         //nameArray.push(unique[key].user.name)
+//         nameArray.push(obj)
+//     }
+//     this.setState({ uniqueUsers: nameArray }, () => {
+//         console.log("unique", this.state.uniqueUsers)
+//         console.log("carUsers", this.state.carUsers)
+//     })
 
-    // }
+// }
 
-    getCarCardData = () => {
-        CarManager.getUserbyCarId(this.props.activeUser).then(data => {
-            console.log("here are your CarCard results", data)
-            this.setState({
-                carUsers: data
-            });
-            // console.log("This is your Car Users by Cars you own", data)
-            // console.log("this is the name", data[0].user.name)
-        })
-        // .then(() => this.removeDups(this.state.carUsers))
-    };
+getCarCardData = () => {
+    CarManager.getUserbyCarId(this.props.activeUser).then(data => {
+        console.log("here are your CarCard results", data)
+        this.setState({
+            carUsers: data
+        });
+        // console.log("This is your Car Users by Cars you own", data)
+        // console.log("this is the name", data[0].user.name)
+    })
+    // .then(() => this.removeDups(this.state.carUsers))
+};
 
-    componentDidMount() {
-        this.getCarCardData()
-    }
+componentDidMount() {
+    this.getCarCardData()
+}
 
-    render() {
-        console.log("users here", this.state.uniqueUsers)
-        console.log("Drivers here", this.props.carUser)
-        return (
-            <>
-                <div id={`carCardId--${this.props.carUser.car.id}`}>
+render() {
+    console.log("users here", this.state.uniqueUsers)
+    console.log("Drivers here", this.props.carUser)
+    return (
+        <>
+            <div id={`carCardId--${this.props.carUser.car.id}`}>
                 <p>CarCard</p>
                 <h2>{this.props.carUser.car.nickName}</h2>
                 <p>{this.props.carUser.car.make} {this.props.carUser.car.model} </p>
                 <p>Year: {this.props.carUser.car.year}</p>
                 <p>Guardians:
-                {this.state.carUsers.map(singleCarUser => {
-                    return singleCarUser.carId === this.props.carUser.car.id ?
-                    <>
-                        <p>{singleCarUser.user.name}  </p>
-                            <button
-                            className='addItemBtn'
-                            type='primary'
-                            shape='round'
-                            icon='delete'
-                            size='small'
-                            onClick={() => this.handleDeleteDriver(this.props.carUser.id)}
-                        >
-                            Remove Driver
+                    <CarDriverSearch
+                                {...this.props}
+                                // key={this.carUser.id}
+                                carUser={this.props.carUser}
+                                addDriver={this.addDriver} />
+                    {this.state.carUsers.map(singleCarUser => {
+                        return singleCarUser.carId === this.props.carUser.car.id ?
+                            <>
+                                <p>{singleCarUser.user.name}  </p>
+                                <button
+                                    className='addItemBtn'
+                                    type='primary'
+                                    shape='round'
+                                    icon='delete'
+                                    size='small'
+                                    onClick={() => this.handleDeleteDriver(this.props.carUser.id)}
+                                >
+                                    Remove Driver
                         </button> </>
-                                        : ""})
+                            : ""
+                    })
                     }
                 </p>
                 <button
-								className='addItemBtn'
-								type='primary'
-								shape='round'
-								icon='delete'
-								size='small'
-								onClick={() => this.handleDelete(this.props.carUser.car.id)}
-							>
-								Delete Car
+                    className='addItemBtn'
+                    type='primary'
+                    shape='round'
+                    icon='delete'
+                    size='small'
+                    onClick={() => this.handleDelete(this.props.carUser.car.id)}
+                >
+                    Delete Car
 							</button>
 
-                </div>
-            </>
-        );
-    }
+            </div>
+        </>
+    );
+}
 }
 
 export default CarCard;

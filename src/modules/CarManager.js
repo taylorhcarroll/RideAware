@@ -96,5 +96,8 @@ export default {
             },
             body: JSON.stringify(carUser)
         }).then(Response => Response.json())
+    },
+    findDriver(name) {
+        return fetch(`${remoteURL}/users?name_like=${name}`).then(result => result.json())
     }
 };
