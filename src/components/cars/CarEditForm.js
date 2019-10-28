@@ -49,8 +49,10 @@ class CarEditForm extends React.Component {
     };
 
     componentDidMount() {
-        CarManager.getCar(this.props.id).then(car => {
+        CarManager.getCar(this.props.car.id).then(car => {
+            console.log("car", car)
             this.setState({
+
                 id: car.userId,
                 loadingStatus: false,
                 nickName: car.nickName,
