@@ -17,10 +17,10 @@ class CarsList extends Component {
 
     getData = () => {
         CarManager.getCarsbyUser(this.props.activeUser).then(cars => {
-            console.log("getData function called:", cars)
             this.setState({
                 carUsers: cars
-            });
+            })
+            console.log("GetData function is called", this.state);
         });
     };
     // addDriver = () => {
@@ -40,9 +40,9 @@ class CarsList extends Component {
                         getData={this.getData}
                         addDriver={this.addDriver}
                         {...this.props}/>
-                    {this.state.carUsers.map(carUser => (
+                    {this.state.carUsers.map((carUser, index) => (
                         <CarCard
-                             key={carUser.id}
+                             key={index}
                              carUser={carUser}
                             {...this.props}
                             addDriver={this.addDriver}

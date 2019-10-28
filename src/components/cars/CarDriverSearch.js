@@ -27,10 +27,10 @@ class CarDriverSearch extends Component {
 	};
 
 	render() {
-        console.log("this.state.searchResults", this.state.searchResults)
+        // console.log("this.state.searchResults", this.state.searchResults)
 		return (
 			<section className='driverSearch'>
-				<h5>Find a Driver:</h5>
+				<span>Find a Driver:</span>
 				{/* <button
 					type='button'
 					className='btn'

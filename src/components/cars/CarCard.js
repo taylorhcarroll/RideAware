@@ -21,6 +21,13 @@ class CarCard extends Component {
             this.props.getData();
         });
     };
+    componentDidUpdate(prevProps, prevState) {
+        CarManager.getUserbyCarId(this.props.activeUser).then((data) => {
+            // console.log(data, "data for componentDidUpdate")
+        if(data !== prevState.carUsers) {
+            // console.log("componentDidUpdate", prevProps)
+        }})
+    }
 // removeDups = (array) => {
 //     let unique = {}
 //     let nameArray = []
@@ -61,8 +68,8 @@ componentDidMount() {
 }
 
 render() {
-    console.log("users here", this.state.uniqueUsers)
-    console.log("Drivers here", this.props.carUser)
+    // console.log("users here", this.state.uniqueUsers)
+    // console.log("Drivers here", this.props.carUser)
     return (
         <>
             <div id={`carCardId--${this.props.carUser.car.id}`}>
@@ -70,7 +77,7 @@ render() {
                 <h2>{this.props.carUser.car.nickName}</h2>
                 <p>Make: {this.props.carUser.car.make} Model: {this.props.carUser.car.model} </p>
                 <p>Year: {this.props.carUser.car.year} Color: {this.props.carUser.car.color}</p>
-                <p>Guardians:
+                <p>Guardians:</p>
                     <CarDriverSearch
                                 {...this.props}
                                 // key={this.carUser.id}
@@ -80,7 +87,7 @@ render() {
                                 addDriver={this.props.addDriver} />
                     {this.state.carUsers.map(singleCarUser => {
                         return singleCarUser.carId === this.props.carUser.car.id ?
-                            <>
+                            <div key={singleCarUser.id}>
                                 <p>{singleCarUser.user.name}  </p>
                                 <button
                                     className='addItemBtn'
@@ -91,11 +98,10 @@ render() {
                                     onClick={() => this.handleDeleteDriver(singleCarUser.id)}
                                 >
                                     Remove Driver
-                        </button> </>
+                        </button> </div>
                             : ""
                     })
                     }
-                </p>
                 <CarEditForm
 								{...this.props.carUser}
 								getData={this.props.getData}

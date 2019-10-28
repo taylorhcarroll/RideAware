@@ -5,23 +5,25 @@ import CarManager from '../../modules/CarManager'
 
 class CarDriverSearchCard extends Component {
     updateDriver() {
-        CarManager.addDriver(this.props.driver.id, this.props.carUser.car.id)
-                        .then(this.props.getData)}
+         CarManager.addDriver(this.props.driver.id, this.props.carUser.car.id)
+             .then(() =>
+                 this.props.getData())
+    }
 
     render() {
-		return (
-			<div className='CarDriverSearchRow'>
-				<h5>{this.props.driver.name}</h5>
-				<button
-					type='button'
-					className='btn'
-                    onClick={() => this.updateDriver() }
-				>
-					Add
+        return (
+            <div className='CarDriverSearchRow'>
+                <h5>{this.props.driver.name}</h5>
+                <button
+                    type='button'
+                    className='btn'
+                    onClick={() => this.updateDriver()}
+                >
+                    Add
 				</button>
-			</div>
-		);
-	}
+            </div>
+        );
+    }
 }
 
 export default CarDriverSearchCard;
