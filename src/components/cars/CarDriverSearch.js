@@ -48,7 +48,8 @@ class CarDriverSearch extends Component {
 				></input>
 				{this.state.searchResults.map(driver => (
 					<CarDriverSearchCard
-						addDriver={this.props.addDriver}
+                        addDriver={this.props.addDriver}
+                        getCarCardData={this.props.getCarCardData}
                         key={driver.id}
                         driver={driver}
                         carUser={this.props.carUser}

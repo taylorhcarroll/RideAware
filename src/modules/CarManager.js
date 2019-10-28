@@ -28,26 +28,6 @@ export default {
                 ).then(response => response.json())
             })
     },
-
-    // getArticles(currentUserId) {
-    //     // let currentUserId = parseInt(sessionStorage.getItem('activeUser'));
-    //     let currentUserFriends = [];
-    //     return FriendsManager.getFriends(currentUserId)
-    //         .then(data => {
-    //             data.forEach(obj => {
-    //                 currentUserFriends.push(obj.userId);
-    //             });
-    //         })
-    //         .then(() => {
-    //             let searchString = '';
-    //             currentUserFriends.forEach(id => {
-    //                 searchString += `&userId=${id}`;
-    //             });
-    //             return fetch(
-    //                 `http://localhost:8088/articles/?userId=${currentUserId}${searchString}&_expand=user&_sort=date&_order=desc`
-    //             ).then(response => response.json());
-    //         });
-    // },
     createCar(car, userId) {
         return fetch(`${remoteURL}/cars/`, {
             method: 'POST',
@@ -59,9 +39,9 @@ export default {
         .then((parsedResponse) => this.addDriver(userId, parsedResponse.id))
 
     },
-    getCarbyId(id) {
-        return fetch(`${remoteURL}/cars/${id}`).then(result => result.json());
-    },
+    // getCarbyId(id) {
+    //     return fetch(`${remoteURL}/cars/${id}`).then(result => result.json());
+    // },
     deleteCar(id) {
 		return fetch(`${remoteURL}/cars/${id}`, {
 			method: 'DELETE'

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CarManager from '../../modules/CarManager'
 import CarDriverSearch from './CarDriverSearch'
+import CarEditForm from './CarEditForm'
 
 class CarCard extends Component {
     state = {
@@ -65,16 +66,17 @@ render() {
     return (
         <>
             <div id={`carCardId--${this.props.carUser.car.id}`}>
-                <p>CarCard</p>
+                {/* <p>CarCard</p> */}
                 <h2>{this.props.carUser.car.nickName}</h2>
-                <p>{this.props.carUser.car.make} {this.props.carUser.car.model} </p>
-                <p>Year: {this.props.carUser.car.year}</p>
+                <p>Make: {this.props.carUser.car.make} Model: {this.props.carUser.car.model} </p>
+                <p>Year: {this.props.carUser.car.year} Color: {this.props.carUser.car.color}</p>
                 <p>Guardians:
                     <CarDriverSearch
                                 {...this.props}
                                 // key={this.carUser.id}
                                 carUser={this.props.carUser}
                                 getData={this.props.getData}
+                                getCarCardData={this.getCarCardData}
                                 addDriver={this.props.addDriver} />
                     {this.state.carUsers.map(singleCarUser => {
                         return singleCarUser.carId === this.props.carUser.car.id ?
@@ -94,6 +96,10 @@ render() {
                     })
                     }
                 </p>
+                <CarEditForm
+								{...this.props.carUser}
+								getData={this.props.getData}
+							/>
                 <button
                     className='addItemBtn'
                     type='primary'
