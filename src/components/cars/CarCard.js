@@ -18,7 +18,7 @@ class CarCard extends Component {
     };
     handleDeleteDriver = id => {
         CarManager.deleteDriver(id).then(() => {
-            this.props.getData();
+            this.getCarCardData();
         });
     };
     // removeDups = (array) => {

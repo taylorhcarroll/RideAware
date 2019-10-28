@@ -6,7 +6,7 @@ import CarManager from '../../modules/CarManager'
 class CarDriverSearchCard extends Component {
     updateDriver() {
         CarManager.addDriver(this.props.driver.id, this.props.carUser.car.id)
-                        .then(this.props.getData)}
+                        .then(() => {this.props.getCarCardData()})}
 
     render() {
 		return (
