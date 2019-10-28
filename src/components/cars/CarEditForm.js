@@ -45,7 +45,7 @@ class CarEditForm extends React.Component {
             picURL: this.state.picURL,
         };
 
-        CarManager.update(editedCar).then(this.props.getData);
+        CarManager.updateCar(editedCar).then(this.props.getData);
     };
 
     componentDidMount() {

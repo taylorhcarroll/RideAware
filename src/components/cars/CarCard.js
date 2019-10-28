@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import CarManager from '../../modules/CarManager'
 import CarDriverSearch from './CarDriverSearch'
 import CarEditForm from './CarEditForm'
