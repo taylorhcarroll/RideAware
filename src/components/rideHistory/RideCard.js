@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 
 class KidCard extends Component {
 	state = {
-		myCard: ''
+		rides: ''
 	};
 
-	// handleDelete = id => {
-	// 	EventsManager.delete(id).then(() => {
-	// 		this.props.getData();
-	// 	});
-	// };
-
 	componentDidMount() {
-	 }
+        this.getData()
+     }
+
+     getData = () => {
+        RideManager.getRidesbyUser(this.props.activeUser).then(rides => {
+            this.setState({
+                rides: rides
+            });
+        });
+     }
 
 	render() {
 		return (
