@@ -5,9 +5,9 @@ const remoteURL = 'http://localhost:8088';
 export default {
     //this will search the kidGuardians and get all kids from the kid resource that belong to the user based on the expand
     getKidsbyUser(currentUserId) {
-        console.log(`http://localhost:8088/kidGuardian/?userId=${currentUserId}`)
+        console.log(`http://localhost:8088/kidGuardians/?userId=${currentUserId}`)
         return fetch(
-            `http://localhost:8088/kidGuardian/?userId=${currentUserId}&_expand=kid`
+            `http://localhost:8088/kidGuardians/?userId=${currentUserId}&_expand=kid`
         ).then(response => response.json());
     },
     getUserbyKidId(currentUserId) {
@@ -24,7 +24,7 @@ export default {
                     searchString += `&kidId=${id}`
                 })
                 return fetch(
-                    `http://localhost:8088/kidGuardian/?_expand=user${searchString}`
+                    `http://localhost:8088/kidGuardians/?_expand=user${searchString}`
                 ).then(response => response.json())
             })
     },
@@ -36,7 +36,7 @@ export default {
             },
             body: JSON.stringify(kid)
         }).then(Response => Response.json())
-        .then((parsedResponse) => this.addDriver(userId, parsedResponse.id))
+        .then((parsedResponse) => this.addGuardian(userId, parsedResponse.id))
 
     },
     deleteKid(id) {
@@ -45,7 +45,7 @@ export default {
 		}).then(result => result.json());
     },
     deleteGuardian(id) {
-		return fetch(`${remoteURL}/kidGuardian/${id}`, {
+		return fetch(`${remoteURL}/kidGuardians/${id}`, {
 			method: 'DELETE'
 		}).then(result => result.json());
     },
@@ -66,7 +66,7 @@ export default {
             userId: userId,
             kidId: kidId
         }
-        return fetch(`${remoteURL}/kidGuardian/`, {
+        return fetch(`${remoteURL}/kidGuardians/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

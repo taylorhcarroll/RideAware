@@ -1,21 +1,21 @@
 // This file is in charge of displaying one friend that is being pulled
 //from FriendsSearch. It will also contain an Add button, and their name.
 import React, { Component } from 'react';
-import CarManager from '../../modules/CarManager'
+import KidManager from '../../modules/KidManager'
 
-class CarDriverSearchCard extends Component {
-    updateDriver() {
-        CarManager.addDriver(this.props.driver.id, this.props.carUser.car.id)
-                        .then(() => {this.props.getCarCardData()})}
+class KidGuardianSearchCard extends Component {
+    updateGuardian() {
+        KidManager.addGuardian(this.props.guardian.id, this.props.kidGuardian.kid.id)
+                        .then(() => {this.props.getKidCardData()})}
 
     render() {
 		return (
-			<div className='CarDriverSearchRow'>
-				<h5>{this.props.driver.name}</h5>
+			<div className='KidGuardianSearchRow'>
+				<h5>{this.props.guardian.name}</h5>
 				<button
 					type='button'
 					className='btn'
-                    onClick={() => this.updateDriver() }
+                    onClick={() => this.updateGuardian() }
 				>
 					Add
 				</button>
@@ -24,4 +24,4 @@ class CarDriverSearchCard extends Component {
 	}
 }
 
-export default CarDriverSearchCard;
+export default KidGuardianSearchCard;

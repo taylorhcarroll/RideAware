@@ -33,7 +33,7 @@ class KidEditForm extends React.Component {
     };
 
     componentDidMount() {
-        Manager.getKid(this.props.kid.id).then(kid => {
+        KidManager.getKid(this.props.kid.id).then(kid => {
             console.log("kid", kid)
             this.setState({
 

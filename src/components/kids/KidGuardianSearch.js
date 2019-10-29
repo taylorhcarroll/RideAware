@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import CarManager from '../../modules/CarManager';
-import CarDriverSearchCard from './CarDriverSearchCard';
+import KidManager from '../../modules/KidManager';
+import KidGuardianSearchCard from './KidGuardianSearchCard';
 
-class CarDriverSearch extends Component {
+class KidGuardianSearch extends Component {
 	//define what this component needs to render
 	state = {
 		searchQuery: '',
@@ -11,7 +11,7 @@ class CarDriverSearch extends Component {
 
 	handleSearch(searchString) {
 		if (searchString.length > 2) {
-			CarManager.findDriver(searchString).then(response => {
+			KidManager.findGuardian(searchString).then(response => {
 				this.setState({ searchResults: response });
 			});
 		} else {
@@ -29,8 +29,8 @@ class CarDriverSearch extends Component {
 	render() {
         console.log("this.state.searchResults", this.state.searchResults)
 		return (
-			<section className='driverSearch'>
-				<h5>Find a Driver:</h5>
+			<section className='GuardianSearch'>
+				<h5>Find a Guardian:</h5>
 				{/* <button
 					type='button'
 					className='btn'
@@ -46,13 +46,13 @@ class CarDriverSearch extends Component {
 					onChange={this.handleFieldChange}
 					placeholder='Search by Name'
 				></input>
-				{this.state.searchResults.map(driver => (
-					<CarDriverSearchCard
-                        addDriver={this.props.addDriver}
-                        getCarCardData={this.props.getCarCardData}
-                        key={driver.id}
-                        driver={driver}
-                        carUser={this.props.carUser}
+				{this.state.searchResults.map(guardian => (
+					<KidGuardianSearchCard
+                        addGuardian={this.props.addGuardian}
+                        getKidCardData={this.props.getKidCardData}
+                        key={guardian.id}
+                        guardian={guardian}
+                        kidGuardian={this.props.kidGuardian}
                         getData={this.props.getData}
 					/>
 				))}
@@ -60,4 +60,4 @@ class CarDriverSearch extends Component {
 		);
 	}
 }
-export default CarDriverSearch;
+export default KidGuardianSearch;
