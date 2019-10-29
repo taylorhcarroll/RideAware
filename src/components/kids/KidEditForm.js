@@ -21,7 +21,7 @@ class KidEditForm extends React.Component {
     updateExistingKid = evt => {
         //evt.preventDefault()
         this.setState({ loadingStatus: true });
-        const editedCar = {
+        const editedKid = {
             id: this.props.id,
             nickName: this.state.nickName,
             name: this.state.name,
@@ -42,7 +42,7 @@ class KidEditForm extends React.Component {
                 nickName: kid.nickName,
                 name: kid.name,
                 age: kid.age,
-                picURL: car.picURL
+                picURL: kid.picURL
             });
         });
     }
