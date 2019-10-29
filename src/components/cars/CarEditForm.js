@@ -32,7 +32,7 @@ class CarEditForm extends React.Component {
     // 	});
     // };
 
-    updateExistingMessage = evt => {
+    updateExistingCar = evt => {
         //evt.preventDefault()
         this.setState({ loadingStatus: true });
         const editedCar = {
@@ -67,7 +67,7 @@ class CarEditForm extends React.Component {
 
     handleClick = evt => {
         evt.preventDefault();
-        this.updateExistingMessage();
+        this.updateExistingCar();
         // this.onClose();
         this.setState({ loadingStatus: false });
     };

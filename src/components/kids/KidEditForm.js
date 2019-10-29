@@ -1,15 +1,13 @@
 import React from 'react';
 
-import CarManager from '../../modules/CarManager';
-class CarEditForm extends React.Component {
+import KidManager from '../../modules/KidManager';
+class KidEditForm extends React.Component {
     state = {
         visible: false,
         userId: '',
         nickName: "",
-        make: "",
-        model: "",
-        year: "",
-        color: "",
+        name: "",
+        age: "",
         picURL: "",
         loadingStatus: false,
     };
@@ -20,54 +18,38 @@ class CarEditForm extends React.Component {
         this.setState(stateToChange);
     };
 
-    // showDrawer = () => {
-    // 	this.setState({
-    // 		visible: true
-    // 	});
-    // };
-
-    // onClose = () => {
-    // 	this.setState({
-    // 		visible: false
-    // 	});
-    // };
-
-    updateExistingMessage = evt => {
+    updateExistingKid = evt => {
         //evt.preventDefault()
         this.setState({ loadingStatus: true });
         const editedCar = {
             id: this.props.id,
             nickName: this.state.nickName,
-            make: this.state.make,
-            model: this.state.model,
-            year: this.state.year,
-            color: this.state.color,
-            picURL: this.state.picURL,
+            name: this.state.name,
+            age: this.state.model,
+            picURL: this.state.picURL
         };
 
-        CarManager.updateCar(editedCar).then(this.props.getData);
+        KidManager.updateKid(editedKid).then(this.props.getData);
     };
 
     componentDidMount() {
-        CarManager.getCar(this.props.car.id).then(car => {
-            console.log("car", car)
+        Manager.getKid(this.props.kid.id).then(kid => {
+            console.log("kid", kid)
             this.setState({
 
-                id: car.userId,
+                id: kid.userId,
                 loadingStatus: false,
-                nickName: car.nickName,
-                make: car.make,
-                model: car.model,
-                year: car.year,
-                color: car.color,
-                picURL: car.picURL,
+                nickName: kid.nickName,
+                name: kid.name,
+                age: kid.age,
+                picURL: car.picURL
             });
         });
     }
 
     handleClick = evt => {
         evt.preventDefault();
-        this.updateExistingMessage();
+        this.updateExistingKid();
         // this.onClose();
         this.setState({ loadingStatus: false });
     };
@@ -83,7 +65,7 @@ class CarEditForm extends React.Component {
                     size='small'
                     // onClick={this.showDrawer}
                 >
-                    Show Edit Car
+                    Show Edit Kid
 				</button>
 
                 {/* <Drawer
@@ -120,42 +102,21 @@ class CarEditForm extends React.Component {
                                 type='text'
                                 required
                                 onChange={this.handleFieldChange}
-                                id='make'
-                                placeholder='make'
-                                value={this.state.make}
+                                id='name'
+                                placeholder='name'
+                                value={this.state.name}
                                 prefix={
                                     <icon type='pic-left' style={{ color: 'rgba(0,0,0,.25)' }} />
                                 }
                             />
                             <input
                                 type='text'
+                                pattern="[0-9]{3}"
                                 required
                                 onChange={this.handleFieldChange}
-                                id='model'
-                                placeholder='model'
-                                value={this.state.model}
-                                prefix={
-                                    <icon type='pic-left' style={{ color: 'rgba(0,0,0,.25)' }} />
-                                }
-                            />
-                            <input
-                                type='text'
-                                required
-                                onChange={this.handleFieldChange}
-                                id='year'
-                                placeholder='year'
-                                value={this.state.year}
-                                prefix={
-                                    <icon type='pic-left' style={{ color: 'rgba(0,0,0,.25)' }} />
-                                }
-                            />
-                            <input
-                                type='text'
-                                required
-                                onChange={this.handleFieldChange}
-                                id='color'
-                                placeholder='color'
-                                value={this.state.color}
+                                id='age'
+                                placeholder='age'
+                                value={this.state.age}
                                 prefix={
                                     <icon type='pic-left' style={{ color: 'rgba(0,0,0,.25)' }} />
                                 }
@@ -165,7 +126,7 @@ class CarEditForm extends React.Component {
                                 required
                                 onChange={this.handleFieldChange}
                                 id='picURL'
-                                placeholder='image upload'
+                                placeholder='replace image'
                                 value={this.state.picURL}
                                 prefix={
                                     <icon type='pic-left' style={{ color: 'rgba(0,0,0,.25)' }} />
@@ -185,17 +146,9 @@ class CarEditForm extends React.Component {
 							</button>
                         </div>
                     </form>
-                    {/* <img
-                        src='/images/chase.gif'
-                        alt='Smiley face'
-                        height='auto'
-                        width='350px'
-                        z-index='-2'
-                    /> */}
-                {/* </Drawer> */}
             </div>
         );
     }
 }
 
-export default CarEditForm;
+export default KidEditForm;

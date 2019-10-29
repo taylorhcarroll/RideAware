@@ -16,7 +16,7 @@ class KidCard extends Component {
             this.props.getData();
         });
     };
-    handleDeleteDriver = id => {
+    handleDeleteGuardian = id => {
         KidManager.deleteGuardian(id).then(() => {
             this.getKidCardData();
         });
@@ -42,37 +42,37 @@ class KidCard extends Component {
         return (
             <>
                 <div id={`kidCardId--${this.props.kidGuardian.kid.id}`}>
-                    {/* <p>CarCard</p> */}
-                    <h2>{this.props.kidGuardian.car.nickName}</h2>
-                    <p>Make: {this.props.carUser.car.make} Model: {this.props.carUser.car.model} </p>
-                    <p>Year: {this.props.carUser.car.year} Color: {this.props.carUser.car.color}</p>
+                    <h2>{this.props.kidGuardian.kid.nickName}</h2>
+                    <p>Name: {this.props.kidGuardian.kid.name}</p>
+                    <p>Age: {this.props.kidGuardian.kid.age}</p>
+                    <p>Pic: {this.props.kidGuardian.kid.picURL}</p>
                     <p>Guardians:</p>
-                    <CarDriverSearch
+                    <KidGuardianSearch
                         {...this.props}
-                        // key={this.carUser.id}
-                        carUser={this.props.carUser}
+
+                        kidGuardian={this.props.kidGuardian}
                         getData={this.props.getData}
-                        getCarCardData={this.getCarCardData}
-                        addDriver={this.props.addDriver} />
-                    {this.state.carUsers.map(singleCarUser => {
-                        return singleCarUser.carId === this.props.carUser.car.id ?
-                                <div key={singleCarUser.id}>
-                                    <p>{singleCarUser.user.name}  </p>
+                        getKidCardData={this.getKidCardData}
+                        addGuardian={this.props.addGuardian} />
+                    {this.state.kidGuardians.map(singleKidGuardian => {
+                        return singleKidGuardian.kidId === this.props.kidGuardian.kid.id ?
+                                <div key={singleKidGuardian.id}>
+                                    <p>{singleKidGuardian.user.name}  </p>
                                     <button
                                         className='addItemBtn'
                                         type='primary'
                                         shape='round'
                                         icon='delete'
                                         size='small'
-                                        onClick={() => this.handleDeleteDriver(singleCarUser.id)}
+                                        onClick={() => this.handleDeleteGuardian(singleKidGuardian.id)}
                                     >
-                                        Remove Driver
+                                        Remove Guardian
                         </button> </div>
                             : ""
                     })
                     }
-                    <CarEditForm
-                        {...this.props.carUser}
+                    <KidEditForm
+                        {...this.props.kidGuardian}
                         getData={this.props.getData}
                     />
                     <button
@@ -81,9 +81,9 @@ class KidCard extends Component {
                         shape='round'
                         icon='delete'
                         size='small'
-                        onClick={() => this.handleDelete(this.props.carUser.car.id)}
+                        onClick={() => this.handleDelete(this.props.kidGuardian.kid.id)}
                     >
-                        Delete Car
+                        Delete Kid
 							</button>
 
                 </div>
