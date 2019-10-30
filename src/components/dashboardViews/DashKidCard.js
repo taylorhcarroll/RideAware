@@ -3,12 +3,16 @@ import React, { Component } from 'react';
 
 class DashKidCard extends Component {
     state = {
-        added: false
+        added: true
     };
 
     componentDidMount() {
     }
-
+    toggle = () => {
+        this.setState(prevState => ({
+            added: !prevState.added
+        }))
+    }
     render() {
         return (
             <>
@@ -23,9 +27,7 @@ class DashKidCard extends Component {
                             size='small'
                             onClick={() => {
                                 this.props.setPassenger(this.props.arrayKid.kidId)
-                                this.setState({
-                                    added: true
-                                })
+                                this.toggle()
                             }}
 
                         >
@@ -39,9 +41,7 @@ class DashKidCard extends Component {
                             size='small'
                             onClick={() => {
                                 this.props.removePassenger(this.props.arrayKid.kidId)
-                                this.setState({
-                                    added: false
-                                })
+                                this.toggle()
                             }}
 
                         >
