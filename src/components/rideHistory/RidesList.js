@@ -29,7 +29,7 @@ class RidesList extends Component {
 		RideManager.getRidesWithKids()
 		return (
 			<>
-            <p>Hello this is a Ride List</p>
+            <h3>Past Rides</h3>
 			{this.state.rides.map(ride => (
 			<RideCard
 						key={ride.id}

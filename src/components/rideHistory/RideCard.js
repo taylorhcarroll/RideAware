@@ -2,28 +2,30 @@ import React, { Component } from 'react';
 import RideManager from '../../modules/RideManager'
 
 class RideCard extends Component {
-	state = {
-		rides: []
-	};
+    // state = {
+    //     rides: []
+    // };
 
-	// componentDidMount() {
+    // componentDidMount() {
     //     this.props.getData()
     //  }
 
 
-	render() {
-		return (
-			<>
-            <p>Hello this is a RideCard</p>
-            <p>Date: {this.props.ride.date}</p>
-            <p>Time: {this.props.ride.time}</p>
-            <p>Driver: {this.props.ride.user.name}</p>
-            {this.state.rides.map(ride => (
-            {/* <p>Passengers: {this.props.ride.kid.name}</p> */}
-            {/* {this.props.kidGuardian.kid.nickName} */}
+    render() {
+        return (
+            <>
+                <h5>Date: {this.props.ride.date}</h5>
+                <p>Time: {this.props.ride.timeStamp}</p>
+                <p>Driver: {this.props.ride.user.name}</p>
+                <p>Passengers:</p>
+                {this.props.ride.kids.map(kid => (
+                    <p>{kid.name}</p>
+                )
+                )
+                }
             </>
-		);
-	}
+        )
+    }
 }
 
 export default RideCard;
