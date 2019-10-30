@@ -7,10 +7,10 @@ export default {
 	// 		result.json()
 	// 	);
     // },
-    getRidesbyUser(currentUserId) {
-        console.log(`http://localhost:8088/rides/?userId=${currentUserId}`)
+    getRidesWithKids(currentUserId) {
+        console.log(`http://localhost:8088/rides?userId=${currentUserId}&include=kids`)
         return fetch(
-            `http://localhost:8088/rides/?userId=${currentUserId}&_expand=car`
+            `http://localhost:8088/rides?userId=${currentUserId}&include=kids`
         ).then(response => response.json());
     },
 	createRide(ride) {
@@ -22,10 +22,37 @@ export default {
 			body: JSON.stringify(ride)
 		}).then(Response => Response.json());
 	},
-	getUserById(id) {
-		return fetch(`${remoteURL}/users/${id}`).then(result => result.json());
-	}
+	deleteRide(id) {
+		return fetch(`${remoteURL}/rides/${id}`).then(result => result.json());
+    },
+    updateRide(editedRide) {
+		return fetch(`${remoteURL}/rides/${editedRide.id}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(editedRide)
+		}).then(data => data.json());
+	},
+	getRide(id) {
+		return fetch(`${remoteURL}/rides/${id}`).then(result => result.json());
+    },
+    deletePassenger(id) {
+		return fetch(`${remoteURL}/cars_users/${id}`, {
+			method: 'DELETE'
+		}).then(result => result.json());
+    },
+    addPassenger(kidId, rideId) {
+        let kids_rides = {
+            kidId: kidId,
+            rideId: rideId
+        }
+        return fetch(`${remoteURL}/kids_rides/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(kids_rides)
+        }).then(Response => Response.json())
+    },
 };
-
-
-// http://localhost:8088/rides?userId=1
