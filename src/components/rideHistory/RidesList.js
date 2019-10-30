@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import RideCard from './RideCard'
+import RideManager from '../../modules/RideManager';
 
 
 class RidesList extends Component {
 	state = {
-		myCard: ''
+		rides: []
 	};
 
 	// handleDelete = id => {
@@ -12,20 +13,31 @@ class RidesList extends Component {
 	// 		this.props.getData();
 	// 	});
 	// };
-
+	getData = () => {
+        RideManager.getRidesWithKids(this.props.activeUser).then(rides => {
+			console.log("getData Rides function called:", rides)
+            this.setState({
+                rides: rides
+            });
+        });
+     }
 	componentDidMount() {
+		this.getData();
 	 }
 
 	render() {
+		RideManager.getRidesWithKids()
 		return (
 			<>
             <p>Hello this is a Ride List</p>
+			{this.state.rides.map(ride => (
 			<RideCard
-						// key={article.id}
-						// article={article}
+						key={ride.id}
 						{...this.props}
-						// getData={this.getData}
+						getData={this.getData}
+						ride={ride}
 					/>
+					))}
             </>
 		);
 	}
