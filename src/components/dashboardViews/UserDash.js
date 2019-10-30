@@ -19,43 +19,49 @@ class UserDash extends Component {
 	// };
 	setPassenger = (id) => {
 		console.log("setPassenger is Called", id)
+		this.state.passengers.push(id)
 		//push into the passengers array the kidId
 	}
 	removePassenger = (id) => {
 		console.log("removePassenger is Called", id)
-		//remove passenger in array by kidId
-	}
+		// this.state.passengers.filter(function (id) {
+			//remove passenger in array by kidId
+			var index = this.state.passengers.indexOf(id);
+			if (index > -1) {
+				this.state.passengers.splice(index, 1);
+			}}
 
 	startRide = () => {
-		console.log("startRide is Called")
-		//create the ride and take the passengers array and forEach over each to create the relationships
-	}
+				console.log("startRide is Called")
+				//create the ride and take the passengers array and forEach over each to create the relationships
+			}
 
 	componentDidMount() {
-		const newState = {}
+			const newState = {}
 		CarManager.getCarsbyUser(this.props.activeUser).then(cars => {
-			newState.arrayCars = cars
-		})
-			.then(() => KidManager.getKidsbyUser(this.props.activeUser).then(kids => {
-				newState.arrayKids = kids
-			}))
-			.then(() => {
-				this.setState(newState)
+				newState.arrayCars = cars
 			})
+				.then(() => KidManager.getKidsbyUser(this.props.activeUser).then(kids => {
+					newState.arrayKids = kids
+				}))
+				.then(() => {
+					this.setState(newState)
+				})
 		console.log("newState", newState)
-		//console.log("the set state", this.state)
-	}
+			//console.log("the set state", this.state)
+		}
 
 	render() {
-		return (
+			return(
 			<>
-				<p>Hello this is the User Dashboard</p>
-				<select>
-					{this.state.arrayCars.map(arrayCar =>
-						<option key={arrayCar.car.id} value={arrayCar.car.id}>{arrayCar.car.nickName}</option>
-					)}
-				</select>
-				{this.state.arrayKids.map(arrayKid =>
+		<p>Hello this is the User Dashboard</p>
+		<select>
+			{this.state.arrayCars.map(arrayCar =>
+				<option key={arrayCar.car.id} value={arrayCar.car.id}>{arrayCar.car.nickName}</option>
+			)}
+		</select>
+				{
+				this.state.arrayKids.map(arrayKid =>
 					<DashKidCard
 						key={arrayKid.kid.id}
 						arrayKid={arrayKid}
@@ -63,9 +69,10 @@ class UserDash extends Component {
 						setPassenger={this.setPassenger}
 						removePassenger={this.removePassenger}
 					/>
-					)}
-				<p>This is where a kid Card you will map over will go</p>
-				<p>This is where the button will go to generate a Ride</p>
+				)
+			}
+			< p > This is where a kid Card you will map over will go</p >
+		<p>This is where the button will go to generate a Ride</p>
 			</>
 		);
 	}
