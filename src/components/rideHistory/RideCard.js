@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RideManager from '../../modules/RideManager'
 
 class KidCard extends Component {
 	state = {

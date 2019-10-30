@@ -2,11 +2,11 @@
 const remoteURL = 'http://localhost:8088';
 
 export default {
-	getRidesbyUser(currentUserId) {
-		return fetch(`${remoteURL}/users?userName=${userName}`).then(result =>
-			result.json()
-		);
-    },
+	// getRidesbyUser(currentUserId) {
+	// 	return fetch(`${remoteURL}/users?userName=${userName}`).then(result =>
+	// 		result.json()
+	// 	);
+    // },
     getRidesbyUser(currentUserId) {
         console.log(`http://localhost:8088/rides/?userId=${currentUserId}`)
         return fetch(
@@ -28,4 +28,4 @@ export default {
 };
 
 
-http://localhost:8088/rides?userId=1
+// http://localhost:8088/rides?userId=1
