@@ -6,10 +6,10 @@ import CarAddForm from './CarAddForm';
 
 class CarsList extends Component {
     state = {
-        carUsers: []
+        cars_users: []
     };
 
-    //fetch carUser by userId
+    //fetch cars_users by userId
 
     componentDidMount() {
         this.getData();
@@ -19,7 +19,7 @@ class CarsList extends Component {
         CarManager.getCarsbyUser(this.props.activeUser).then(cars => {
             console.log("getData function called:", cars)
             this.setState({
-                carUsers: cars
+                cars_users: cars
             });
         });
     };
@@ -40,10 +40,10 @@ class CarsList extends Component {
                         getData={this.getData}
                         addDriver={this.addDriver}
                         {...this.props}/>
-                    {this.state.carUsers.map(carUser => (
+                    {this.state.cars_users.map(cars_user => (
                         <CarCard
-                             key={carUser.id}
-                             carUser={carUser}
+                             key={cars_user.id}
+                             cars_user={cars_user}
                             {...this.props}
                             addDriver={this.addDriver}
                         getData={this.getData}

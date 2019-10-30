@@ -5,9 +5,9 @@ const remoteURL = 'http://localhost:8088';
 export default {
     //this will search the carUsers and get all cars from the car resource that belong to the user based on the expand
     getCarsbyUser(currentUserId) {
-        console.log(`http://localhost:8088/carUser/?userId=${currentUserId}`)
+        console.log(`http://localhost:8088/cars_users/?userId=${currentUserId}`)
         return fetch(
-            `http://localhost:8088/carUser/?userId=${currentUserId}&_expand=car`
+            `http://localhost:8088/cars_users/?userId=${currentUserId}&expand=car`
         ).then(response => response.json());
     },
     getUserbyCarId(currentUserId) {
@@ -24,7 +24,7 @@ export default {
                     searchString += `&carId=${id}`
                 })
                 return fetch(
-                    `http://localhost:8088/carUser/?_expand=user${searchString}`
+                    `http://localhost:8088/cars_users/?expand=user${searchString}`
                 ).then(response => response.json())
             })
     },
@@ -48,7 +48,7 @@ export default {
 		}).then(result => result.json());
     },
     deleteDriver(id) {
-		return fetch(`${remoteURL}/carUser/${id}`, {
+		return fetch(`${remoteURL}/cars_users/${id}`, {
 			method: 'DELETE'
 		}).then(result => result.json());
     },
@@ -69,7 +69,7 @@ export default {
             userId: userId,
             carId: carId
         }
-        return fetch(`${remoteURL}/carUser/`, {
+        return fetch(`${remoteURL}/cars_users/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

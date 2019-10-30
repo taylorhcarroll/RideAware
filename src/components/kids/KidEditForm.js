@@ -22,7 +22,7 @@ class KidEditForm extends React.Component {
         //evt.preventDefault()
         this.setState({ loadingStatus: true });
         const editedKid = {
-            id: this.props.id,
+            id: this.props.kidId,
             nickName: this.state.nickName,
             name: this.state.name,
             age: this.state.model,

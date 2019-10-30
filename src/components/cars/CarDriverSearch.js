@@ -52,7 +52,7 @@ class CarDriverSearch extends Component {
                         getCarCardData={this.props.getCarCardData}
                         key={driver.id}
                         driver={driver}
-                        carUser={this.props.carUser}
+                        cars_user={this.props.cars_user}
                         getData={this.props.getData}
 					/>
 				))}

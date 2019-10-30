@@ -5,11 +5,11 @@ import CarEditForm from './CarEditForm'
 
 class CarCard extends Component {
     state = {
-        carUsers: [],
+        cars_users: [],
         uniqueUsers: []
     };
 
-    //fetch carUser by carId
+    //fetch cars_user by carId
 
     handleDelete = id => {
         CarManager.deleteCar(id).then(() => {
@@ -39,7 +39,7 @@ class CarCard extends Component {
     //     }
     //     this.setState({ uniqueUsers: nameArray }, () => {
     //         console.log("unique", this.state.uniqueUsers)
-    //         console.log("carUsers", this.state.carUsers)
+    //         console.log("cars_users", this.state.cars_users)
     //     })
 
     // }
@@ -48,12 +48,12 @@ class CarCard extends Component {
         CarManager.getUserbyCarId(this.props.activeUser).then(data => {
             console.log("here are your CarCard results", data)
             this.setState({
-                carUsers: data
+                cars_users: data
             });
             // console.log("This is your Car Users by Cars you own", data)
             // console.log("this is the name", data[0].user.name)
         })
-        // .then(() => this.removeDups(this.state.carUsers))
+        // .then(() => this.removeDups(this.state.cars_users))
     };
 
     componentDidMount() {
@@ -61,25 +61,25 @@ class CarCard extends Component {
     }
 
     render() {
-        console.log("users here", this.state.uniqueUsers)
-        console.log("Drivers here", this.props.carUser)
+        // console.log("users here", this.state.uniqueUsers)
+        console.log("Drivers here", this.props.cars_user)
         return (
             <>
-                <div id={`carCardId--${this.props.carUser.car.id}`}>
+                <div id={`carCardId--${this.props.cars_user.car.id}`}>
                     {/* <p>CarCard</p> */}
-                    <h2>{this.props.carUser.car.nickName}</h2>
-                    <p>Make: {this.props.carUser.car.make} Model: {this.props.carUser.car.model} </p>
-                    <p>Year: {this.props.carUser.car.year} Color: {this.props.carUser.car.color}</p>
+                    <h2>{this.props.cars_user.car.nickName}</h2>
+                    <p>Make: {this.props.cars_user.car.make} Model: {this.props.cars_user.car.model} </p>
+                    <p>Year: {this.props.cars_user.car.year} Color: {this.props.cars_user.car.color}</p>
                     <p>Guardians:</p>
                     <CarDriverSearch
                         {...this.props}
-                        // key={this.carUser.id}
-                        carUser={this.props.carUser}
+                        // key={this.cars_user.id}
+                        cars_user={this.props.cars_user}
                         getData={this.props.getData}
                         getCarCardData={this.getCarCardData}
                         addDriver={this.props.addDriver} />
-                    {this.state.carUsers.map(singleCarUser => {
-                        return singleCarUser.carId === this.props.carUser.car.id ?
+                    {this.state.cars_users.map(singleCarUser => {
+                        return singleCarUser.carId === this.props.cars_user.car.id ?
                                 <div key={singleCarUser.id}>
                                     <p>{singleCarUser.user.name}  </p>
                                     <button
@@ -96,7 +96,7 @@ class CarCard extends Component {
                     })
                     }
                     <CarEditForm
-                        {...this.props.carUser}
+                        {...this.props.cars_user}
                         getData={this.props.getData}
                     />
                     <button
@@ -105,7 +105,7 @@ class CarCard extends Component {
                         shape='round'
                         icon='delete'
                         size='small'
-                        onClick={() => this.handleDelete(this.props.carUser.car.id)}
+                        onClick={() => this.handleDelete(this.props.cars_user.car.id)}
                     >
                         Delete Car
 							</button>

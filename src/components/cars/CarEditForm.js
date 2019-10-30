@@ -36,7 +36,7 @@ class CarEditForm extends React.Component {
         //evt.preventDefault()
         this.setState({ loadingStatus: true });
         const editedCar = {
-            id: this.props.id,
+            id: this.props.carId,
             nickName: this.state.nickName,
             make: this.state.make,
             model: this.state.model,
