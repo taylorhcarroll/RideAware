@@ -3,20 +3,23 @@ import CarManager from '../../modules/CarManager'
 import KidManager from '../../modules/KidManager'
 import RideManager from '../../modules/RideManager'
 import DashKidCard from './DashKidCard'
+import moment from 'moment'
 
 class UserDash extends Component {
 	state = {
 		ride: "",
 		arrayCars: [],
+		selectedCar: "",
 		arrayKids: [],
 		passengers: []
 	};
 
-	// handleDelete = id => {
-	// 	EventsManager.delete(id).then(() => {
-	// 		this.props.getData();
-	// 	});
-	// };
+	handleFieldChange = evt => {
+		console.log("HandleField change is called", evt.target.id)
+		const stateToChange = {};
+		stateToChange[evt.target.id] = evt.target.value;
+		this.setState(stateToChange);
+	};
 	setPassenger = (id) => {
 		console.log("setPassenger is Called", id)
 		this.state.passengers.push(id)
@@ -25,54 +28,76 @@ class UserDash extends Component {
 	removePassenger = (id) => {
 		console.log("removePassenger is Called", id)
 		// this.state.passengers.filter(function (id) {
-			//remove passenger in array by kidId
-			var index = this.state.passengers.indexOf(id);
-			if (index > -1) {
-				this.state.passengers.splice(index, 1);
-			}}
+		//remove passenger in array by kidId
+		var index = this.state.passengers.indexOf(id);
+		if (index > -1) {
+			this.state.passengers.splice(index, 1);
+		}
+	}
 
 	startRide = () => {
-				console.log("startRide is Called")
-				//create the ride and take the passengers array and forEach over each to create the relationships
-			}
+		console.log("startRide is Called", moment(new Date()))
+		console.log("selectedCar", this.state.selectedCar)
+		//create the ride and take the passengers array and forEach over each to create the relationships
+		const newRide = {
+			userId: parseInt(sessionStorage.getItem('activeUser')),
+			date: moment(new Date()).format("MMM Do YY"),
+			carId: this.state.selectedCar,
+			timeStamp: moment(new Date()).format('LT'),
+			//moment(new Date()).format('MMMM Do YYYY, h:mm:ss a'),
+			editTimeStamp: "",
+			locationId: "1",
+			PickedUp: "false"
+		}
+		RideManager.createRide(newRide)
+		console.log("new Ride", newRide)
+	}
 
 	componentDidMount() {
-			const newState = {}
+		const newState = {}
 		CarManager.getCarsbyUser(this.props.activeUser).then(cars => {
-				newState.arrayCars = cars
+			newState.arrayCars = cars
+		})
+			.then(() => KidManager.getKidsbyUser(this.props.activeUser).then(kids => {
+				newState.arrayKids = kids
+			}))
+			.then(() => {
+				this.setState(newState)
 			})
-				.then(() => KidManager.getKidsbyUser(this.props.activeUser).then(kids => {
-					newState.arrayKids = kids
-				}))
-				.then(() => {
-					this.setState(newState)
-				})
 		console.log("newState", newState)
-			//console.log("the set state", this.state)
-		}
+		//console.log("the set state", this.state)
+	}
 
 	render() {
-			return(
+		console.log("selected car",this.state.selectedCar)
+		return (
 			<>
-		<p>Hello this is the User Dashboard</p>
-		<select>
-			{this.state.arrayCars.map(arrayCar =>
-				<option key={arrayCar.car.id} value={arrayCar.car.id}>{arrayCar.car.nickName}</option>
-			)}
-		</select>
+				<p>Hello this is the User Dashboard</p>
+				<select id='selectedCar' onChange={this.handleFieldChange}>
+					<option value="" disabled selected>Select your Car</option>
+					{this.state.arrayCars.map(arrayCar =>
+						<option key={arrayCar.car.id} value={arrayCar.car.id}>{arrayCar.car.nickName}</option>
+					)}
+				</select>
 				{
-				this.state.arrayKids.map(arrayKid =>
-					<DashKidCard
-						key={arrayKid.kid.id}
-						arrayKid={arrayKid}
-						{...this.props}
-						setPassenger={this.setPassenger}
-						removePassenger={this.removePassenger}
-					/>
-				)
-			}
-			< p > This is where a kid Card you will map over will go</p >
-		<p>This is where the button will go to generate a Ride</p>
+					this.state.arrayKids.map(arrayKid =>
+						<DashKidCard
+							key={arrayKid.kid.id}
+							arrayKid={arrayKid}
+							{...this.props}
+							setPassenger={this.setPassenger}
+							removePassenger={this.removePassenger}
+						/>
+					)
+				}
+				<button
+					className='addItemBtn'
+					type='primary'
+					shape='round'
+					icon='delete'
+					size='small'
+					onClick={() => this.startRide()}
+				>Start Ride</button>
 			</>
 		);
 	}
