@@ -10,7 +10,7 @@ export default {
     getRidesWithKids(currentUserId) {
         console.log(`http://localhost:8088/rides?userId=${currentUserId}&include=kids`)
         return fetch(
-            `http://localhost:8088/rides?userId=${currentUserId}&include=kids&expand=user`
+            `http://localhost:8088/rides?userId=${currentUserId}&include=kids&expand=user&sort=date&order=desc`
         ).then(response => response.json());
     },
 	createRide(ride) {
