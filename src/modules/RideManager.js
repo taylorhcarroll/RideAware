@@ -44,17 +44,13 @@ export default {
 			method: 'DELETE'
 		}).then(result => result.json());
     },
-    addPassenger(kidId, rideId) {
-        let kids_rides = {
-            kidId: kidId,
-            rideId: rideId
-        }
+    addPassenger(passenger) {
         return fetch(`${remoteURL}/kids_rides/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(kids_rides)
+            body: JSON.stringify(passenger)
         }).then(Response => Response.json())
     },
 };

@@ -61,9 +61,24 @@ class UserDash extends Component {
 				this.setState({
 					ride: response
 				}))
-		console.log("new Ride", newRide)
-		this.toggle()
-	}
+				.then(() =>
+		this.state.passengers.forEach(passenger => {
+			let passengerObj = {
+						rideId: this.state.ride.id,
+						kidId: passenger
+					}
+					console.log("passenger Object", passengerObj)
+					RideManager.addPassenger(passengerObj)
+		// {this.state.passengers.map(passenger =>
+		// 	let passengerObj = {
+		// 		rideId: this.state.ride.id,
+		// 		kidId: passenger
+		// 	}
+		// 	RideManager.addPassenger(passengerObj))}
+	}))
+	console.log("new Ride", newRide)
+	this.toggle()
+}
 
 	cancelRide = () => {
 		RideManager.deleteRide(this.state.ride.id)
