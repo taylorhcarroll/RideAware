@@ -23,7 +23,9 @@ export default {
 		}).then(Response => Response.json());
 	},
 	deleteRide(id) {
-		return fetch(`${remoteURL}/rides/${id}`).then(result => result.json());
+        return fetch(`${remoteURL}/rides/${id}`, {
+            method: 'DELETE'
+        }).then(result => result.json());
     },
     updateRide(editedRide) {
 		return fetch(`${remoteURL}/rides/${editedRide.id}`, {
@@ -38,7 +40,7 @@ export default {
 		return fetch(`${remoteURL}/rides/${id}`).then(result => result.json());
     },
     deletePassenger(id) {
-		return fetch(`${remoteURL}/cars_users/${id}`, {
+		return fetch(`${remoteURL}/kids_rides/${id}`, {
 			method: 'DELETE'
 		}).then(result => result.json());
     },

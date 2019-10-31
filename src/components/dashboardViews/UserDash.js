@@ -11,8 +11,15 @@ class UserDash extends Component {
 		arrayCars: [],
 		selectedCar: "",
 		arrayKids: [],
-		passengers: []
+		passengers: [],
+		rideCreated: false
 	};
+
+	toggle = () => {
+        this.setState(prevState => ({
+            rideCreated: !prevState.rideCreated
+        }))
+    }
 
 	handleFieldChange = evt => {
 		console.log("HandleField change is called", evt.target.id)
@@ -50,7 +57,17 @@ class UserDash extends Component {
 			PickedUp: "false"
 		}
 		RideManager.createRide(newRide)
+			.then((response) =>
+				this.setState({
+					ride: response
+				}))
 		console.log("new Ride", newRide)
+		this.toggle()
+	}
+
+	cancelRide = () => {
+		RideManager.deleteRide(this.state.ride.id)
+		this.toggle()
 	}
 
 	componentDidMount() {
@@ -90,14 +107,24 @@ class UserDash extends Component {
 						/>
 					)
 				}
+				{this.state.rideCreated === false ?
 				<button
 					className='addItemBtn'
 					type='primary'
 					shape='round'
 					icon='delete'
 					size='small'
-					onClick={() => this.startRide()}
+					onClick={() => {this.startRide()}}
 				>Start Ride</button>
+				:
+				<button
+					className='addItemBtn'
+					type='primary'
+					shape='round'
+					icon='delete'
+					size='small'
+					onClick={() => this.cancelRide(this.state.ride)}
+				>Cancel Ride</button> }
 			</>
 		);
 	}
