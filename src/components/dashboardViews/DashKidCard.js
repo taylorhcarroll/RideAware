@@ -14,39 +14,42 @@ class DashKidCard extends Component {
         }))
     }
     render() {
+        console.log(this.props.rideCreated, "rideCreated props")
         return (
             <>
                 <div id="`DashKidCardId--{this.props.arrayKid.kid.id}`">
                     <p>Name: {this.props.arrayKid.kid.nickName}</p>
-                    {this.state.added === true ?
-                        <button
-                            className='addItemBtn'
-                            type='primary'
-                            shape='round'
-                            icon='delete'
-                            size='small'
-                            onClick={() => {
-                                this.props.setPassenger(this.props.arrayKid.kidId)
-                                this.toggle()
-                            }}
+                    {!this.props.rideCreated ?
+                        <>
+                            {this.state.added === true ?
+                                <button
+                                    className='addItemBtn'
+                                    type='primary'
+                                    shape='round'
+                                    icon='delete'
+                                    size='small'
+                                    onClick={() => {
+                                        this.props.setPassenger(this.props.arrayKid.kidId)
+                                        this.toggle()
+                                    }}
 
-                        >
-                            Add
+                                >
+                                    Add
                         </button> :
-                        <button
-                            className='addItemBtn'
-                            type='primary'
-                            shape='round'
-                            icon='delete'
-                            size='small'
-                            onClick={() => {
-                                this.props.removePassenger(this.props.arrayKid.kidId)
-                                this.toggle()
-                            }}
+                                <button
+                                    className='addItemBtn'
+                                    type='primary'
+                                    shape='round'
+                                    icon='delete'
+                                    size='small'
+                                    onClick={() => {
+                                        this.props.removePassenger(this.props.arrayKid.kidId)
+                                        this.toggle()
+                                    }}
 
-                        >
-                            Remove
-                    </button>}
+                                >
+                                    Remove
+                    </button>} </> : ""}
                 </div>
             </>
         );

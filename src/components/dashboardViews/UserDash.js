@@ -3,6 +3,7 @@ import CarManager from '../../modules/CarManager'
 import KidManager from '../../modules/KidManager'
 import RideManager from '../../modules/RideManager'
 import DashKidCard from './DashKidCard'
+import DashKidCardCompleted from './DashKidCardCompleted'
 import moment from 'moment'
 
 class UserDash extends Component {
@@ -12,7 +13,8 @@ class UserDash extends Component {
 		selectedCar: "",
 		arrayKids: [],
 		passengers: [],
-		rideCreated: false
+		rideCreated: false,
+		added: ""
 	};
 
 	toggle = () => {
@@ -41,7 +43,11 @@ class UserDash extends Component {
 			this.state.passengers.splice(index, 1);
 		}
 	}
-
+	resetButtons = () => {
+		this.setState({
+			added: false
+		})
+	}
 	startRide = () => {
 		console.log("startRide is Called", moment(new Date()))
 		console.log("selectedCar", this.state.selectedCar)
@@ -59,7 +65,7 @@ class UserDash extends Component {
 		RideManager.createRide(newRide)
 			.then((response) =>
 				this.setState({
-					ride: response
+					ride: response,
 				}))
 				.then(() =>
 		this.state.passengers.forEach(passenger => {
@@ -81,11 +87,24 @@ class UserDash extends Component {
 }
 
 	cancelRide = () => {
-		RideManager.deleteRide(this.state.ride.id)
-		this.toggle()
-	}
+		RideManager.deleteRide(this.state.ride.id).then(() => {
+			this.toggle()
+		this.getRideData()
+	})}
 
 	componentDidMount() {
+		const newState = {}
+		CarManager.getCarsbyUser(this.props.activeUser).then(cars => {
+			newState.arrayCars = cars
+		})
+			.then(() => KidManager.getKidsbyUser(this.props.activeUser).then(kids => {
+				newState.arrayKids = kids
+			}))
+			.then(() => {
+				this.setState(newState)
+			})
+	}
+	getRideData() {
 		const newState = {}
 		CarManager.getCarsbyUser(this.props.activeUser).then(cars => {
 			newState.arrayCars = cars
@@ -113,14 +132,22 @@ class UserDash extends Component {
 				</select>
 				{
 					this.state.arrayKids.map(arrayKid =>
+						{return this.state.rideCreated === false ?
 						<DashKidCard
 							key={arrayKid.kid.id}
 							arrayKid={arrayKid}
 							{...this.props}
 							setPassenger={this.setPassenger}
 							removePassenger={this.removePassenger}
+							rideCreated={this.state.rideCreated}
+						/> :
+						<DashKidCardCompleted
+							key={arrayKid.kid.id}
+							arrayKid={arrayKid}
+							{...this.props}
+							rideCreated={this.state.rideCreated}
 						/>
-					)
+						})
 				}
 				{this.state.rideCreated === false ?
 				<button
