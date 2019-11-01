@@ -27,6 +27,10 @@ class NavBar extends Component {
         return (
             <nav className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
                 <ul className="nav nav-pills nav-fill">
+                {this.props.admin === "true" ?
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/AdminDash">Admin Portal</Link>
+                    </li>: ""}
                     <li className="nav-item">
                         <Link className="nav-link" to="/UserDash">Dashboard</Link>
                     </li>

@@ -36,7 +36,8 @@ class Registration extends Component {
 			const newUser = {
 				userName: userName,
 				password: password,
-				name: name
+				name: name,
+				admin: "false"
 			};
 			AuthManager.createUser(newUser).then(response => {
 				//response[0].id is the ID of the user you logged in with,

@@ -7,7 +7,8 @@ import Login from './components/auth/Login'
 class App extends Component {
 	state = {
 		user: sessionStorage.getItem('activeUser') !== null,
-		activeUser: ''
+		activeUser: '',
+		admin: ''
 	};
 
 	isAuthenticated = () => sessionStorage.getItem('activeUser') !== null;
@@ -25,6 +26,11 @@ class App extends Component {
 		}
 	}
 
+	adminCheck = (check) => {
+		this.setState({
+			admin: check
+		})
+	}
 	clearUser = () => {
 		sessionStorage.removeItem('activeUser');
 		this.setState({
@@ -42,10 +48,12 @@ class App extends Component {
 							user={this.state.user}
 							{...this.props}
 							activeUser={this.state.activeUser}
+							admin={this.state.admin}
 							// currentUserId={this.props.activeUser}
 						/>
 						<ApplicationViews
 							user={this.state.user}
+							admin={this.state.admin}
 							{...this.props}
 							activeUser={this.state.activeUser}
 						/>
@@ -56,6 +64,8 @@ class App extends Component {
 						setUser={this.setUser}
 						user={this.state.user}
 						{...this.props}
+						adminCheck={this.adminCheck}
+						admin={this.state.admin}
 						activeUser={this.state.activeUser}
 					/>
 				)}
