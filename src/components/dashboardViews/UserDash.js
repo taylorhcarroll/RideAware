@@ -60,7 +60,7 @@ class UserDash extends Component {
 			//moment(new Date()).format('MMMM Do YYYY, h:mm:ss a'),
 			editTimeStamp: "",
 			locationId: "1",
-			PickedUp: "false"
+			PickedUp: false
 		}
 		RideManager.createRide(newRide)
 			.then((response) =>
