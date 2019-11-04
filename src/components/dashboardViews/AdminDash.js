@@ -6,7 +6,7 @@ class AdminDash extends Component {
 	state = {
 		currentDate: '',
 		kidsArray: [],
-		availableKidsArray: [],
+		availableKids: [],
 		completedKidsArray: [],
 		rides: []
 	};
@@ -18,26 +18,53 @@ class AdminDash extends Component {
 	// };
 
 	componentDidMount() {
-		this.setCurrentDate()
-		this.getKidsList()
-	}
-
-	setCurrentDate = () => {
-		let currentDate = moment(new Date()).format("MMM Do YY")
-		console.log("current Date", currentDate)
-		this.setState({
-			curentDate: currentDate
+		let newState = {}
+		newState.currentDate = moment(new Date()).format("MMM Do YY")
+		AdminManager.getAllKids().then((response) => {
+			newState.kidsArray = response
+			newState.availableKids = this.getIncompleteList(response, newState.curentDate)
+			// console.log("Admin Dash New State", newState)
+			this.getSomeKidsBruh(response, newState.currentDate)
 		})
 	}
 
 	getKidsList = () => {
 		AdminManager.getAllKids()
-			.then((response) =>
-				this.setState({
-					kidsArray: response,
-				}))
+			.then((response) => {
+				console.log("kids list for admin DASH", response)
+				// this.setState({
+				// 	kidsArray: response,
+				// })
+			})
+	}
+	getIncompleteList = (kidsArray, currentDate) => {
+		return kidsArray.map(kid => {
+			console.log("kid", kid)
+			kid.rides.filter(ride => {
+				console.log("ride", ride)
+				let todayRide = false
+				console.log("ride date and current date", (ride.date === currentDate))
+				// ride.forEach(rideEvent => {
+				if (ride.date == currentDate) {
+					todayRide = true
+				}
+				//return todayRide
+				// });
+				return todayRide
+			})
+		})
+	}
+	getSomeKidsBruh = (kidsArray, currentDate) => {
+		console.log("getSomeKidsBruh KidsArray", kidsArray, "currentDate", currentDate)
+		let availableKids = kidsArray.filter(kid => {
+			 return kid.rides.some(ride => {
+				 return ride.date !== currentDate
+			});
+		})
+		console.log("available Kids from getSomeKidsBruh", availableKids)
 	}
 	getCompletedList = () => {
+
 
 	}
 
@@ -53,69 +80,12 @@ class AdminDash extends Component {
 			<>
 				<p>Hello this is the Admin Dashboard</p>
 				<p>This where kids who do not have a ride will go.</p>
-				{this.state.kidsArray.map(kid => {
-					console.log("kid", kid)
-					const availableKidsArray = kid.rides.filter(ride => {
-						console.log("ride", ride)
-						let todayRide = false
-						console.log("ride date and current date", (ride.date === this.state.curentDate))
-						// ride.forEach(rideEvent => {
-						if (ride.date === this.state.curentDate) {
-							todayRide = true
-						}
-						//return todayRide
-						// });
-						return todayRide
-					})
-					console.log(availableKidsArray, "availableKidsArray")
-					// // Array to contain all the New York businesses
-					// const newYorkBusinesses = businesses.filter(business => {
-					// 	let inNewYork = false
-
-					// 	if (business.addressStateCode === "NY") {
-					// 		inNewYork = true
-					// 	}
-
-					// 	return inNewYork
-					// // })
-					// kid.date.filter(this.state.currentDate) === true ?
-					// <p>Hit!</p> : ""
-					// kid.rides.map(ride => {
-					console.log("admin dash kid", kid)
-					// return ride.date.includes(this.state.curentDate) === true  ?
-					// <p>{kid.nickName}</p> : ""
-					//                 <div key={ride.id}>Name: {}</div>
-				})
-				}this.setState({
-					availableKidsArray: availableKidsArray
-				})
-				)}
-			<p>This is where current rides will go, with a button to complete them.</p>
+				{this.state.availableKids.map(availableKid => (
+					<p>{availableKid.nickName}</p>))}
+				<p>This is where current rides will go, with a button to complete them.</p>
 				<p>This is where a list of kids who have been picked up will go.</p>
 			</>
 		);
 	}
 }
-
-
-// return (
-// 	<>
-// 	<p>Hello this is the Admin Dashboard</p>
-// 	<p>This where kids who do not have a ride will go.</p>
-// 	{this.state.kidsArray.map(kid => {
-// 		return kid.date.filter(this.state.currentDate) === true ?
-// 		<p>Hit!</p> : ""
-// 		kid.rides.map(ride => {
-// 		console.log("admin dash kid ride", ride)
-// 		return ride.date.includes(this.state.curentDate) === true  ?
-// 		<p>{kid.nickName}</p> : ""
-// 						<div key={ride.id}>Name: {}</div>
-// 		})
-// 	})}
-// 	<p>This is where current rides will go, with a button to complete them.</p>
-// 	<p>This is where a list of kids who have been picked up will go.</p>
-// 	</>
-// );
-// }
-// }
 export default AdminDash;
