@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NavBar from "./components/nav/NavBar";
 import ApplicationViews from "./components/ApplicationViews";
 import Login from './components/auth/Login'
+import './components/App.css';
 
 
 class App extends Component {

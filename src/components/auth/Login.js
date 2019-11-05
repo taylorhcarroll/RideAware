@@ -55,9 +55,20 @@ class Login extends Component {
 	render() {
 		return (
 			<>
-				{this.state.hideReg && (
-					<>
-						{/* <Spring
+				<div class="login-Wrapper">
+					<div class="landing-Container">
+						<h1>Ride Aware</h1>
+						<h6>The safest way to pick your child up from school.</h6>
+						<img
+							src='/images/login_splash.png'
+							alt='parent seeing kid off to school'
+							height='auto'
+							width='350px'
+						// z-index= '-2'
+						/>
+						{this.state.hideReg && (
+							<>
+								{/* <Spring
 							from={{ opacity: 0 }}
 							to={{ opacity: 1 }}
 							//config={{ duration: 500 }}
@@ -65,62 +76,64 @@ class Login extends Component {
 							{props => (
 								<div style={props}> */}
 
-						<form
-							onSubmit={this.handleLogin}
-							id='loginForm'
-							className='login-form'
-						>
-							<div className='formField'>
-								<input
-									placeholder='Username'
-									onChange={this.handleFieldChange}
-									type='userName'
-									id='userName'
-									required=''
-									autoFocus=''
-								/>
-							</div>
-							<div className='formField'>
-								<input
-									prefix={
-										<icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
-									}
-									type='password'
-									placeholder='Password'
-									onChange={this.handleFieldChange}
-									id='password'
-									required=''
-								/>
-							</div>
-							<div className='formField'>
-								{/* <Checkbox>Remember me</Checkbox> */}
-								<button type='submit' className='login-form-button'>
-									Log in
+								<form
+									onSubmit={this.handleLogin}
+									id='loginForm'
+									className='login-form'
+								>
+									<div className='formField'>
+										<input
+											placeholder='Username'
+											onChange={this.handleFieldChange}
+											type='userName'
+											id='userName'
+											required=''
+											autoFocus=''
+										/>
+									</div>
+									<div className='formField'>
+										<input
+											prefix={
+												<icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
+											}
+											type='password'
+											placeholder='Password'
+											onChange={this.handleFieldChange}
+											id='password'
+											required=''
+										/>
+									</div>
+									<div className='formField'>
+										{/* <Checkbox>Remember me</Checkbox> */}
+										<button type='submit' className='login-form-button'>
+											Log in
 								</button>
-								<p className='regLink' onClick={this.showLogin} href=''>
-									Or register now!
+										<p className='regLink' onClick={this.showLogin} href=''>
+											Or register now!
 								</p>
-							</div>
-						</form>
-						{/* </div>
+									</div>
+								</form>
+								{/* </div>
 							)}
 						</Spring> */}
-					</>
-				)}
+							</>
+						)}
 
-				{!this.state.hideReg && (
-					// <Spring
-					// 	from={{ opacity: 0 }}
-					// 	to={{ opacity: 1 }}
-					// 	//config={{ duration: 500 }}
-					// >
-					// 	{props => (
-					// 		<div style={props}>
-					<Register {...this.props} hideReg={this.hideReg} />
-					// 		</div>
-					// 	)}
-					// </Spring>
-				)}
+						{!this.state.hideReg && (
+							// <Spring
+							// 	from={{ opacity: 0 }}
+							// 	to={{ opacity: 1 }}
+							// 	//config={{ duration: 500 }}
+							// >
+							// 	{props => (
+							// 		<div style={props}>
+							<Register {...this.props} hideReg={this.hideReg} />
+							// 		</div>
+							// 	)}
+							// </Spring>
+						)}
+					</div>
+				</div>
 			</>
 		);
 	}

@@ -1,0 +1,16 @@
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+.login-Wrapper{
+    display: flex;
+    margin: auto;
+    max-width: 500px;
+    justify-content: center;
+}
+
+.landing-Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

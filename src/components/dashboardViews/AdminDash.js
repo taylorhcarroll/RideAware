@@ -20,13 +20,18 @@ class AdminDash extends Component {
 			newState.availableKids = this.getIncompleteList(response, newState.currentDate)
 			// console.log("Admin Dash New State", newState)
 			newState.completedKids = this.getCompletedList(response, newState.currentDate)
-			newState.currentRides = this.getInProgressList(newState.currentDate)
-			this.setState({
-				currentDate: newState.currentDate,
-				availableKids: newState.availableKids,
-				completedKids: newState.completedKids,
-				currentRides: newState.currentRides
-			})
+		}).then(() => {
+			console.log("newState.currentDate", newState.currentDate)
+			this.getCurrentRides(newState.currentDate)
+				.then((response) => {
+					// newState.currentRides = this.getInProgressList(newState.currentDate)
+					this.setState({
+						currentDate: newState.currentDate,
+						availableKids: newState.availableKids,
+						completedKids: newState.completedKids,
+						currentRides: response
+					})
+				})
 		})
 	}
 
@@ -42,12 +47,18 @@ class AdminDash extends Component {
 	getIncompleteList = (kidsArray, currentDate) => {
 		//console.log("getSomeKidsBruh KidsArray", kidsArray, "currentDate", currentDate)
 		let availableKids = kidsArray.filter(kid => {
-			return kid.rides.some(ride => {
-				return ride.date === currentDate && !ride.PickedUp
+			return kid.rides.every(ride => {
+				return ride.date === !currentDate
 			});
 		})
 		console.log("availableKids from getSomeKidsBruh", availableKids)
 		return availableKids
+	}
+	getCurrentRides = (currentDate) => {
+		return RideManager.getAllCurrentRides(currentDate)
+			// .then((response) => {
+			// 	console.log("Test Current rides calls", response)
+			// })
 	}
 	// getIncompleteList = (kidsArray, currentDate) => {
 	// 	return kidsArray.map(kid => {
@@ -88,14 +99,14 @@ class AdminDash extends Component {
 	// 	return completedKids
 	// }
 
-	getInProgressList = (currentDate) => {
-		RideManager.getAllCurrentRides(currentDate)
-			.then((currentRides) => {
-			console.log("getInProgressList", currentRides)
-			return currentRides
+	// getInProgressList = (currentDate) => {
+	// 	RideManager.getAllCurrentRides(currentDate)
+	// 		.then((currentRides) => {
+	// 		console.log("getInProgressList", currentRides)
+	// 		return currentRides
 
-		})
-	}
+	// 	})
+	// }
 	render() {
 		return (
 			<>
@@ -104,8 +115,8 @@ class AdminDash extends Component {
 				{this.state.availableKids.map(availableKid => (
 					<p>{availableKid.nickName}</p>))}
 				<h5>This is where current rides will go, with a button to complete them.</h5>
-				{/* {this.state.currentRides.map(currentRide => (
-					<p>{currentRide.id}</p>))} */}
+				{this.state.currentRides.map(currentRide => (
+					<p>{currentRide.user.name}</p>))}
 				<h5>This is where a list of kids who have been picked up will go.</h5>
 				{this.state.completedKids.map(completedKid => (
 					<p>{completedKid.nickName}</p>))}
