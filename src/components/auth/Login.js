@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import AuthManager from '../../modules/AuthManager';
 import Register from '../auth/Register';
 import { withRouter } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField'
 // import { Spring } from 'react-spring/renderprops';
 
 class Login extends Component {
@@ -82,35 +84,40 @@ class Login extends Component {
 									className='login-form'
 								>
 									<div className='formField'>
-										<input
-											placeholder='Username'
+										<TextField
+											//placeholder='Username'
 											onChange={this.handleFieldChange}
 											type='userName'
 											id='userName'
 											required=''
 											autoFocus=''
+											margin="small"
+											label='Username'
+          									variant="outlined"
 										/>
 									</div>
 									<div className='formField'>
-										<input
+										<TextField
 											prefix={
 												<icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
 											}
 											type='password'
-											placeholder='Password'
+											label='Password'
+											//placeholder='Password'
 											onChange={this.handleFieldChange}
 											id='password'
 											required=''
+											margin="normal"
+          									variant="outlined"
 										/>
 									</div>
 									<div className='formField'>
 										{/* <Checkbox>Remember me</Checkbox> */}
-										<button type='submit' className='login-form-button'>
+										<Button variant="contained" size="small" color="primary" type='submit' className='login-form-button'>
 											Log in
-								</button>
-										<p className='regLink' onClick={this.showLogin} href=''>
-											Or register now!
-								</p>
+								</Button>
+										<Button size="small" variant="contained" color="secondary" className='regLink' onClick={this.showLogin} href=''>
+											Register</Button>
 									</div>
 								</form>
 								{/* </div>
