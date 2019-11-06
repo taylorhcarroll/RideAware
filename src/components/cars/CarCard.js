@@ -68,6 +68,12 @@ class CarCard extends Component {
             <>
                 <div class="main-Form" main-Form id={`carCardId--${this.props.cars_user.car.id}`}>
                     {/* <p>CarCard</p> */}
+                    <div>
+                        {this.props.cars_user.car.picURL === '' ? null :
+                            <div>
+                                            <img src={this.props.cars_user.car.picURL} />
+                            </div>}
+                    </div>
                     <h2>{this.props.cars_user.car.nickName}</h2>
                     <p>Make: {this.props.cars_user.car.make} Model: {this.props.cars_user.car.model} </p>
                     <p>Year: {this.props.cars_user.car.year} Color: {this.props.cars_user.car.color}</p>
@@ -81,17 +87,17 @@ class CarCard extends Component {
                         addDriver={this.props.addDriver} />
                     {this.state.cars_users.map(singleCarUser => {
                         return singleCarUser.carId === this.props.cars_user.car.id ?
-                                <div key={singleCarUser.id}>
-                                    <p>{singleCarUser.user.name}  </p>
-                                    <button
-                                        className='addItemBtn'
-                                        type='primary'
-                                        shape='round'
-                                        icon='delete'
-                                        size='small'
-                                        onClick={() => this.handleDeleteDriver(singleCarUser.id)}
-                                    >
-                                        Remove Driver
+                            <div key={singleCarUser.id}>
+                                <p>{singleCarUser.user.name}  </p>
+                                <button
+                                    className='addItemBtn'
+                                    type='primary'
+                                    shape='round'
+                                    icon='delete'
+                                    size='small'
+                                    onClick={() => this.handleDeleteDriver(singleCarUser.id)}
+                                >
+                                    Remove Driver
                         </button> </div>
                             : ""
                     })
