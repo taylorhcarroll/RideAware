@@ -34,8 +34,9 @@ class CarsList extends Component {
             <>
             <div className='mainContainer'>
                 <div className='sectionHeader'>
-                    <h1>Hello this is a Car List</h1>
+                    {/* <h1>Hello this is a Car List</h1> */}
                 </div>
+                <h3>Add a Car</h3>
                 <CarAddForm
                         getData={this.getData}
                         addDriver={this.addDriver}

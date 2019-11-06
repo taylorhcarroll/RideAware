@@ -4,6 +4,7 @@ import Register from '../auth/Register';
 import { withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField'
+
 // import { Spring } from 'react-spring/renderprops';
 
 class Login extends Component {
@@ -91,9 +92,9 @@ class Login extends Component {
 											id='userName'
 											required=''
 											autoFocus=''
-											margin="small"
 											label='Username'
-          									variant="outlined"
+											margin="dense"
+											variant="outlined"
 										/>
 									</div>
 									<div className='formField'>
@@ -107,17 +108,19 @@ class Login extends Component {
 											onChange={this.handleFieldChange}
 											id='password'
 											required=''
-											margin="normal"
-          									variant="outlined"
+											margin="dense"
+											variant="outlined"
 										/>
 									</div>
 									<div className='formField'>
 										{/* <Checkbox>Remember me</Checkbox> */}
-										<Button variant="contained" size="small" color="primary" type='submit' className='login-form-button'>
-											Log in
-								</Button>
-										<Button size="small" variant="contained" color="secondary" className='regLink' onClick={this.showLogin} href=''>
-											Register</Button>
+										<div class="login-button-container">
+											<Button variant="contained" size="small" color="primary" type='submit' className='login-form-button'>
+												Log in
+										</Button>
+											<Button size="small" variant="contained" color="secondary" className='regLink' onClick={this.showLogin} href=''>
+												Register</Button>
+										</div>
 									</div>
 								</form>
 								{/* </div>

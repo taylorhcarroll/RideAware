@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import AuthManager from '../../modules/AuthManager';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField'
 
 class Registration extends Component {
 	// Set initial state
@@ -57,51 +59,65 @@ class Registration extends Component {
 					className='login-form'
 				>
 					<div className='formField'>
-						<input
+						<TextField
 							onChange={this.handleFieldChange}
 							id='regUserName'
 							type='userName'
 							placeholder='User Name'
 							required=''
 							autoFocus=''
+							label='Username'
+							margin="dense"
+							variant="outlined"
 						/>
 					</div>
 					<div className='formField'>
-						<input
+						<TextField
 							onChange={this.handleFieldChange}
 							type='name'
 							id='regName'
-							placeholder='Name'
+							//placeholder='Name'
 							required=''
 							autoFocus=''
+							label='Name'
+							margin="dense"
+							variant="outlined"
 						/>
 					</div>
 					<div className='formField'>
-						<input
+						<TextField
 							onChange={this.handleFieldChange}
 							type='password'
 							id='regPassword'
-							placeholder='Password'
+							//placeholder='Password'
 							required=''
+							label='Password'
+							margin="dense"
+							variant="outlined"
 						/>
 					</div>
 					<div className='formField'>
-						<input
+						<TextField
 							onChange={this.handleFieldChange}
 							type='password'
 							id='regPasswordConfirm'
-							placeholder='Confirm Password'
+							//placeholder='Confirm Password'
 							required=''
+							label='Confirm Password'
+							margin="dense"
+							variant="outlined"
 						/>
 					</div>
 					<div className='formField'>
-						{/* <Checkbox>Remember me</Checkbox> */}
-						<button type='submit' className='login-form-button'>
-							Log in
-						</button>
-						<p className='regLink' onClick={this.props.hideReg} href=''>
-							Go back to Login!
-						</p>
+						<div class="login-button-container">
+							{/* <Checkbox>Remember me</Checkbox> */}
+							<Button type='submit' variant="contained" size="small" color="primary" className='login-form-button'>
+								Sign Up
+						</Button>
+							<Button size="small" variant="contained" color="secondary" className='regLink' onClick={this.props.hideReg} href=''>
+								Go to Login!
+							</Button>
+						</div>
 					</div>
 				</form>
 			</>
