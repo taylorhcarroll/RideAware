@@ -23,9 +23,9 @@ class NavBar extends Component {
 	}
 
     render() {
-        //console.log(this.props, "are your MAD PROPS BOIIIIII")
+        console.log(this.props, "are your MAD PROPS BOIIIIII")
         return (
-            <nav className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
+            <nav id="navBar" className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
                 <ul className="nav nav-pills nav-fill">
                 {this.props.admin === "true" ?
                     <li className="nav-item">

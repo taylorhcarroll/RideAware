@@ -1,5 +1,6 @@
 * {
     font-family: 'Lato', sans-serif;
+    border: 1px red dotted
 }
 
 .login-Wrapper{
@@ -25,5 +26,54 @@
     display: flex;
     margin: auto;
     max-width: 500px;
+    justify-content: center;
+}
+
+.FileUpload {
+    display: flex;
+    flex-flow: wrap;
+    margin: auto;
+    max-width: 200px;
+    justify-content: center;
+}
+
+.imageUpload-wrapper {
+    max-width: 200px
+}
+
+.uploaded-PIC {
+    max-width: 200px;
+    border-radius: 50%;
+}
+
+.Car-Card {
+    /* display: flex; */
+    flex-flow: column wrap;
+    justify-content: center;
+    margin: auto;
+    min-width: 100%
+}
+
+.mainContainer {
+    display: flex;
+    flex-flow: wrap;
+    margin: auto;
+    max-width: 50%;
+    justify-content: center !important;
+}
+
+#sectionHeader {
+    display: flex;
+    flex-flow: wrap;
+    margin: auto;
+    max-width: 50%;
+    justify-content: center;
+}
+
+#navBar {
+    display: flex;
+    flex-flow: wrap;
+    margin: auto;
+    max-width: 50%;
     justify-content: center;
 }

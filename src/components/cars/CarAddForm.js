@@ -193,7 +193,6 @@ class CarAddForm extends React.Component {
                                                         )
                                                     }}
                                                 </Dropzone>
-
                                             </div>
 
                                             <div>

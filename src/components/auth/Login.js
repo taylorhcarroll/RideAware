@@ -50,7 +50,7 @@ class Login extends Component {
 				console.log("logged in user", response[0].admin)
 				this.props.setUser(response[0].id);
 				this.props.adminCheck(response[0].admin)
-				this.props.history.push(`/`);
+				this.props.history.push(`/UserDash`);
 			}
 		});
 	};

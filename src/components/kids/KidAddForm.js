@@ -1,5 +1,7 @@
 import React from 'react';
 import KidManager from '../../modules/KidManager';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField'
 
 class KidAddForm extends React.Component {
     state = {
@@ -64,47 +66,55 @@ class KidAddForm extends React.Component {
                     className='login-form'
                 >
                     <div className='formField'>
-                        <input
-                            placeholder='Nick Name'
+                        <TextField
                             onChange={this.handleFieldChange}
                             type='nickName'
                             id='nickName'
                             required=''
                             autoFocus=''
+                            label='Nick Name'
+                            margin="dense"
+                            variant="outlined"
                         />
                     </div>
 
                     <div className='formField'>
-                        <input
+                        <TextField
                             onChange={this.handleFieldChange}
                             type='text'
                             id='name'
-                            placeholder='Name as listed in directory'
                             required=''
+                            label='Full Name'
+                            margin="dense"
+                            variant="outlined"
                         />
                     </div>
                     <div className='formField'>
-                        <input
+                        <TextField
                             onChange={this.handleFieldChange}
                             type='text'
-                            pattern="[0-9]{3}"
+                            pattern="[0-9]*"
                             id='age'
-                            placeholder='age'
+                            // placeholder='age'
                             required=''
+                            label='Age'
+                            margin="dense"
+                            variant="outlined"
                         />
                     </div>
                     <div className='formField'>
-							<button
-								className='addKid-form-button'
-								type='primary'
-								disabled={this.state.loadingStatus}
-								onClick={this.handleClick}
-								icon='add'
-							>
-								Submit
-							</button>
-						</div>
-                    </form>
+                        <Button
+                            className='addKid-form-button'
+                            type='primary'
+                            disabled={this.state.loadingStatus}
+                            onClick={this.handleClick}
+                            icon='add'
+                            variant="contained" size="small" color="primary"
+                        >
+                            Submit
+							</Button>
+                    </div>
+                </form>
             </div>
         );
     }

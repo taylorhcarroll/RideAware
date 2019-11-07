@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import CarManager from '../../modules/CarManager'
 import CarDriverSearch from './CarDriverSearch'
 import CarEditForm from './CarEditForm'
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Button';
+import CardHeader from '@material-ui/core/Button';
+import CardMedia from '@material-ui/core/Button';
+import Collapse from '@material-ui/core/Collapse';
 
 
 class CarCard extends Component {
@@ -66,15 +71,13 @@ class CarCard extends Component {
         console.log("Drivers here", this.props.cars_user)
         return (
             <>
-                <div class="main-Form" main-Form id={`carCardId--${this.props.cars_user.car.id}`}>
+                <div class="Car-Card" main-Form id={`carCardId--${this.props.cars_user.car.id}`}>
                     {/* <p>CarCard</p> */}
-                    <div>
+                    <CardHeader>{this.props.cars_user.car.nickName}</CardHeader>
+
                         {this.props.cars_user.car.picURL === '' ? null :
-                            <div>
-                                            <img src={this.props.cars_user.car.picURL} />
-                            </div>}
-                    </div>
-                    <h2>{this.props.cars_user.car.nickName}</h2>
+                            <CardMedia image={this.props.cars_user.car.picURL}/>
+                            }
                     <p>Make: {this.props.cars_user.car.make} Model: {this.props.cars_user.car.model} </p>
                     <p>Year: {this.props.cars_user.car.year} Color: {this.props.cars_user.car.color}</p>
                     <p>Guardians:</p>
@@ -89,16 +92,17 @@ class CarCard extends Component {
                         return singleCarUser.carId === this.props.cars_user.car.id ?
                             <div key={singleCarUser.id}>
                                 <p>{singleCarUser.user.name}  </p>
-                                <button
+                                <Button
+                                    variant="contained" size="small" color="error"
                                     className='addItemBtn'
-                                    type='primary'
+                                    type='delete'
                                     shape='round'
                                     icon='delete'
                                     size='small'
                                     onClick={() => this.handleDeleteDriver(singleCarUser.id)}
                                 >
                                     Remove Driver
-                        </button> </div>
+                        </Button> </div>
                             : ""
                     })
                     }
@@ -106,7 +110,8 @@ class CarCard extends Component {
                         {...this.props.cars_user}
                         getData={this.props.getData}
                     />
-                    <button
+                    <Button
+                        variant="contained" size="small" color="error"
                         className='addItemBtn'
                         type='primary'
                         shape='round'
@@ -115,7 +120,7 @@ class CarCard extends Component {
                         onClick={() => this.handleDelete(this.props.cars_user.car.id)}
                     >
                         Delete Car
-							</button>
+							</Button>
 
                 </div>
             </>
