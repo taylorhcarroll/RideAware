@@ -72,6 +72,7 @@ class CarEditForm extends React.Component {
     render() {
         return (
             <div className='addBtnContainer'>
+                <div class="show-Edit-Button">
                 <Button
                     className='addItemBtn'
                     type='primary'
@@ -83,6 +84,7 @@ class CarEditForm extends React.Component {
                 >
                     {this.state.expanded === false ? "Show" : "Hide"} Edit
 				</Button>
+                </div>
                 {/* <Collapse in={expanded} timeout="auto" unmountOnExit> */}
                 {this.state.expanded === true ?
                     <CardContent>

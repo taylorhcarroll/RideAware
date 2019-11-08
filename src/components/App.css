@@ -1,7 +1,11 @@
 * {
     font-family: 'Lato', sans-serif;
-    border: 1px red dotted
+    /* border: 1px red dotted */
 }
+
+/* light purple:
+dark purple: 6C63ff
+coral pink shit: FF6584 */
 
 .login-Wrapper{
     display: flex;
@@ -51,7 +55,18 @@
     flex-flow: column wrap;
     justify-content: center;
     margin: auto;
-    min-width: 100%
+    min-width: 100%;
+    margin-bottom: 10%;
+    background-color: #F0EFFF;
+    color: #6C63ff;
+    padding: 15px;
+}
+
+.car-Header {
+    /* font-size: 2em; */
+}
+.show-Edit-Button {
+    padding: 10px
 }
 
 .mainContainer {
@@ -76,4 +91,26 @@
     margin: auto;
     max-width: 50%;
     justify-content: center;
+}
+
+.CarDriverSearchRow {
+    display: flex;
+    padding-bottom: 10px
+}
+
+.CarDriverSearchRow h5 {
+    padding-right: 10px
+    
+}
+
+.driver-card {
+    display: flex;
+    margin-bottom: 10px
+}
+.driver-card h6{
+    padding-right: 10px;
+}
+
+.driverSearch {
+    padding-bottom: 15px
 }

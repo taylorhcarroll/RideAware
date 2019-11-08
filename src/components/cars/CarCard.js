@@ -73,7 +73,7 @@ class CarCard extends Component {
             <>
                 <div class="Car-Card" main-Form id={`carCardId--${this.props.cars_user.car.id}`}>
                     {/* <p>CarCard</p> */}
-                    <CardHeader>{this.props.cars_user.car.nickName}</CardHeader>
+                    <h3 class="car-Header">{this.props.cars_user.car.nickName}</h3>
 
                         {this.props.cars_user.car.picURL === '' ? null :
                             <CardMedia image={this.props.cars_user.car.picURL}/>
@@ -90,8 +90,8 @@ class CarCard extends Component {
                         addDriver={this.props.addDriver} />
                     {this.state.cars_users.map(singleCarUser => {
                         return singleCarUser.carId === this.props.cars_user.car.id ?
-                            <div key={singleCarUser.id}>
-                                <p>{singleCarUser.user.name}  </p>
+                            <div class="driver-card" key={singleCarUser.id}>
+                                <h6>{singleCarUser.user.name}  </h6>
                                 <Button
                                     variant="contained" size="small" color="error"
                                     className='addItemBtn'
