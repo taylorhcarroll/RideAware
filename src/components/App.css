@@ -60,6 +60,7 @@ coral pink shit: FF6584 */
     background-color: #F0EFFF;
     color: #6C63ff;
     padding: 15px;
+    border-radius: 25px
 }
 
 .car-Header {
@@ -77,20 +78,33 @@ coral pink shit: FF6584 */
     justify-content: center !important;
 }
 
-#sectionHeader {
+.sectionHeader {
     display: flex;
     flex-flow: wrap;
-    margin: auto;
+    /* margin: auto; */
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
     max-width: 50%;
     justify-content: center;
 }
 
+.mainContainer h1 {
+    min-width: 100%;
+    display: flex;
+    background-color: rgb(82, 175, 151);
+    color: white;
+    justify-content: center;
+    border-radius: 25px
+}
+
 #navBar {
     display: flex;
-    flex-flow: wrap;
+    /* flex-flow: wrap; */
     margin: auto;
     max-width: 50%;
     justify-content: center;
+    padding-bottom: 1%;
+    align-items: center
 }
 
 .CarDriverSearchRow {
@@ -100,7 +114,6 @@ coral pink shit: FF6584 */
 
 .CarDriverSearchRow h5 {
     padding-right: 10px
-    
 }
 
 .driver-card {

@@ -23,9 +23,8 @@ class NavBar extends Component {
 	}
 
     render() {
-        console.log(this.props, "are your MAD PROPS BOIIIIII")
         return (
-            <nav id="navBar" className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
+            <nav id="navBar">
                 <ul className="nav nav-pills nav-fill">
                 {this.props.admin === "true" ?
                     <li className="nav-item">
@@ -46,9 +45,9 @@ class NavBar extends Component {
                     <li className="nav-item">
                         <Link className="nav-link" to="/RideHistory">Ride History</Link>
                     </li>
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <Link className="nav-link" to="/Locations">Locations</Link>
-                    </li>
+                    </li> */}
                     <li className='nav-item'>
                     <Link className="nav-link" onClick={this.handleLogout}>Logout</Link>
 						</li>
