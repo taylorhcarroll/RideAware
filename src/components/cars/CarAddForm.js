@@ -4,6 +4,8 @@ import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField'
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 const uploadPreset = 'rideAware';
 const uploadURL = ' https://api.cloudinary.com/v1_1/nss-35/image/upload';
@@ -19,8 +21,15 @@ class CarAddForm extends React.Component {
         file: null,
         picURL: "",
         loadingStatus: false,
+        expand: false
 
     };
+
+    toggle = () => {
+        this.setState(prevState => ({
+            expanded: !prevState.expanded
+        }))
+    }
 
     handleFieldChange = evt => {
         const stateToChange = {};
@@ -35,8 +44,8 @@ class CarAddForm extends React.Component {
         });
         this.handleImageUpload(files[0]);
     }
-     // this uploads the image to cloudinary, and sends a URL to the image back in its place
-     handleImageUpload(file) {
+    // this uploads the image to cloudinary, and sends a URL to the image back in its place
+    handleImageUpload(file) {
         let upload = request.post(uploadURL)
             .field('upload_preset', uploadPreset)
             .field('file', file);
@@ -112,7 +121,12 @@ class CarAddForm extends React.Component {
     render() {
         return (
             <div className='addBtnContainer'>
-
+                <div class="add-Button">
+                    <Fab color="primary" aria-label="add" onClick={this.toggle}>
+                        <AddIcon />
+                    </Fab>
+                </div>
+                {this.state.expanded === true ?
                 <form
                     onSubmit={this.handleLogin}
                     id='loginForm'
@@ -174,35 +188,35 @@ class CarAddForm extends React.Component {
                         margin="dense"
                         variant="outlined"
                     />
-                     <div>
-                                            <div className="FileUpload">
-                                                <Dropzone
-                                                    onDrop={this.onImageDrop.bind(this)}
-                                                    accept="image/*"
-                                                    multiple={false}>
-                                                    {({ getRootProps, getInputProps }) => {
-                                                        return (
-                                                            <div
-                                                                {...getRootProps()}
-                                                            >
-                                                                <input {...getInputProps()} /> ADD PICTURE:
+                    <div>
+                        <div className="FileUpload">
+                            <Dropzone
+                                onDrop={this.onImageDrop.bind(this)}
+                                accept="image/*"
+                                multiple={false}>
+                                {({ getRootProps, getInputProps }) => {
+                                    return (
+                                        <div
+                                            {...getRootProps()}
+                                        >
+                                            <input {...getInputProps()} /> ADD PICTURE:
                                                     {
-                                                                    <p>Try dragging a picture here, or click to select a file to upload.</p>
-                                                                }
-                                                            </div>
-                                                        )
-                                                    }}
-                                                </Dropzone>
-                                            </div>
-
-                                            <div>
-                                                {this.state.picURL === '' ? null :
-                                                    <div>
-                                                        <p>{this.state.name}</p>
-                                                        <img src={this.state.picURL} />
-                                                    </div>}
-                                            </div>
+                                                <p>Try dragging a picture here, or click to select a file to upload.</p>
+                                            }
                                         </div>
+                                    )
+                                }}
+                            </Dropzone>
+                        </div>
+
+                        <div>
+                            {this.state.picURL === '' ? null :
+                                <div>
+                                    <p>{this.state.name}</p>
+                                    <img src={this.state.picURL} />
+                                </div>}
+                        </div>
+                    </div>
                     <div className='formField'>
                         <Button
                             className='addCar-form-button'
@@ -216,6 +230,7 @@ class CarAddForm extends React.Component {
                         </Button>
                     </div>
                 </form>
+                : "" }
             </div>
         );
     }

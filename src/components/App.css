@@ -80,7 +80,8 @@ coral pink shit: FF6584 */
 
 .sectionHeader {
     display: flex;
-    flex-flow: wrap;
+    flex-flow: column wrap;
+    align-items: center;
     /* margin: auto; */
     margin-top: 10px !important;
     margin-bottom: 20px !important;
@@ -126,4 +127,10 @@ coral pink shit: FF6584 */
 
 .driverSearch {
     padding-bottom: 15px
+}
+
+.add-Button {
+    display: flex;
+    justify-content: center;
+    align-items: center
 }
