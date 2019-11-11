@@ -50,6 +50,10 @@ coral pink shit: FF6584 */
     border-radius: 50%;
 }
 
+#user-Dash {
+    align-self: center;
+}
+
 .Car-Card {
     /* display: flex; */
     flex-flow: column wrap;

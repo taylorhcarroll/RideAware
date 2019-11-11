@@ -140,7 +140,7 @@ class UserDash extends Component {
 					<h1>User Dashboard</h1>
 					<div class="User-Dash">
 					{this.state.selectedCar === '' ? null :
-                            <img class="uploaded-PIC" src={this.state.selectedCar.car.picURL} />
+                            <img id="user-Dash" class="uploaded-PIC" src={this.state.selectedCar.car.picURL} />
                         }
 						{/* old select */}
 						{/* <select native id='selectedCar' onChange={this.handleFieldChange}>
