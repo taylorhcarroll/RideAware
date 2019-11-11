@@ -7,6 +7,11 @@ import DashKidCardCompleted from './DashKidCardCompleted'
 import moment from 'moment'
 import Select from '@material-ui/icons/Delete';
 import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 class UserDash extends Component {
 	state = {
@@ -45,6 +50,11 @@ class UserDash extends Component {
 			this.state.passengers.splice(index, 1);
 		}
 	}
+
+	handleChange = name => event => {
+		this.setState({ [name]: this.state.arrayCars.find(car => car.carId === Number(event.target.value))  });
+	};
+
 	resetButtons = () => {
 		this.setState({
 			added: false
@@ -129,20 +139,44 @@ class UserDash extends Component {
 				<div class="mainContainer">
 					<h1>User Dashboard</h1>
 					<div class="User-Dash">
-						<select native id='selectedCar' onChange={this.handleFieldChange}>
+					{this.state.selectedCar === '' ? null :
+                            <img class="uploaded-PIC" src={this.state.selectedCar.car.picURL} />
+                        }
+						{/* old select */}
+						{/* <select native id='selectedCar' onChange={this.handleFieldChange}>
 							<option value="" disabled selected>Select your Car</option>
 							{this.state.arrayCars.map(arrayCar =>
 								<option key={arrayCar.car.id} value={arrayCar.car.id}>{arrayCar.car.nickName}</option>
 							)}
-						</select>
-						<Select
-							labelId="demo-simple-select-label"
-							id="demo-simple-select"
-						>
-							<MenuItem value={10}>Ten</MenuItem>
-							<MenuItem value={20}>Twenty</MenuItem>
-							<MenuItem value={30}>Thirty</MenuItem>
-						</Select>
+						</select> */}
+						<FormControl
+                                variant='outlined'
+                                margin='dense'
+                            >
+                                <InputLabel
+                                    ref={ref => {
+                                        this.InputLabelRef = ref;
+                                    }}
+                                    htmlFor='outlined-type-native-simple'
+                                >
+                                </InputLabel>
+                                <NativeSelect
+                                    // value={"HELLO"}
+                                    onChange={this.handleChange('selectedCar')}
+                                    input={
+                                        <OutlinedInput
+                                            name='Select Your Car'
+                                            labelWidth={this.state.labelWidth}
+                                            id='selectedCar'
+                                        />
+                                    }
+                                >
+                                    <option value="" disabled selected>Select your Car</option>
+							{this.state.arrayCars.map(arrayCar =>
+								<option key={arrayCar.car.id} value={arrayCar.car.id}>{arrayCar.car.nickName}</option>
+							)}
+                                </NativeSelect>
+                            </FormControl>
 						{
 							this.state.arrayKids.map(arrayKid => {
 								return this.state.rideCreated === false ?
