@@ -76,9 +76,9 @@ class CarCard extends Component {
                 <div class="Car-Card" main-Form id={`carCardId--${this.props.cars_user.car.id}`}>
                     {/* <p>CarCard</p> */}
                     <h3 class="car-Header">{this.props.cars_user.car.nickName}</h3>
-                        {this.props.cars_user.car.picURL === '' ? null :
-                            <img class="uploaded-PIC" src={this.props.cars_user.car.picURL} />
-                        }
+                    {this.props.cars_user.car.picURL === '' ? null :
+                        <img class="uploaded-PIC" src={this.props.cars_user.car.picURL} />
+                    }
                     <p>Make: {this.props.cars_user.car.make} Model: {this.props.cars_user.car.model} </p>
                     <p>Year: {this.props.cars_user.car.year} Color: {this.props.cars_user.car.color}</p>
                     <p>Guardians:</p>
@@ -94,7 +94,8 @@ class CarCard extends Component {
                             <div class="driver-card" key={singleCarUser.id}>
                                 <h6>{singleCarUser.user.name}  </h6>
                                 <Button
-                                    variant="contained" size="small" color="error"
+                                    // className='delete-Button'
+                                    variant="contained" size="small"
                                     startIcon={<DeleteIcon />}
                                     className='addItemBtn'
                                     type='delete'
@@ -113,9 +114,10 @@ class CarCard extends Component {
                         getData={this.props.getData}
                     />
                     <Button
-                        variant="contained" size="small" color="error"
-                        startIcon={<DeleteIcon />}
                         className='addItemBtn'
+                        startIcon={<DeleteIcon />}
+                        variant="contained" size="small"
+                        className='delete-Button'
                         type='primary'
                         shape='round'
                         icon='delete'

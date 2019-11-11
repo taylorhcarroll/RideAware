@@ -11,8 +11,10 @@ import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import InputAdornment from '@material-ui/core/InputAdornment';
-
+import Button from '@material-ui/core/Button';
+import CommuteRounded from '@material-ui/icons/CommuteRounded';
+import Fab from '@material-ui/core/Fab';
+import Cancel from '@material-ui/icons/Cancel'
 class UserDash extends Component {
 	state = {
 		ride: "",
@@ -197,23 +199,26 @@ class UserDash extends Component {
 							})
 						}
 						{this.state.rideCreated === false ?
-							<button
+							<Fab
 								className='addItemBtn'
 								type='primary'
+								variant="extended" color="primary"
 								shape='round'
 								icon='delete'
 								size='small'
 								onClick={() => { this.startRide() }}
-							>Start Ride</button>
+							>Start Ride  <CommuteRounded /></Fab>
 							:
-							<button
-								className='addItemBtn'
+							<Fab
+								className='delete-Button'
+								variant="extended"
 								type='primary'
 								shape='round'
 								icon='delete'
 								size='small'
 								onClick={() => this.cancelRide(this.state.ride)}
-							>Cancel Ride</button>}
+
+							>Cancel Ride  <Cancel /></Fab>}
 					</div>
 				</div>
 			</>

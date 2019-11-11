@@ -64,13 +64,14 @@ class KidCard extends Component {
                             <div key={singleKidGuardian.id}>
                                 <p>{singleKidGuardian.user.name}  </p>
                                 <Button
-                                    variant="contained" size="small" color="error"
+                                    variant="contained" size="small"
                                     startIcon={<DeleteIcon />}
                                     className='addItemBtn'
                                     type='primary'
                                     shape='round'
                                     icon='delete'
                                     size='small'
+                                    // className='delete-Button'
                                     onClick={() => this.handleDeleteGuardian(singleKidGuardian.id)}
                                 >
                                     Remove Guardian
@@ -85,7 +86,8 @@ class KidCard extends Component {
                     <Button
                         className='addItemBtn'
                         startIcon={<DeleteIcon />}
-                        variant="contained" size="small" color="error"
+                        variant="contained" size="small"
+                        className='delete-Button'
                         type='primary'
                         shape='round'
                         icon='delete'

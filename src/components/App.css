@@ -54,6 +54,10 @@ coral pink shit: FF6584 */
     align-self: center;
 }
 
+.delete-Button {
+    background-color: coral !important;
+}
+
 .Car-Card {
     /* display: flex; */
     flex-flow: column wrap;

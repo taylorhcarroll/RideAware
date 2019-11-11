@@ -56,9 +56,9 @@ class AdminDash extends Component {
 	}
 	getCurrentRides = (currentDate) => {
 		return RideManager.getAllCurrentRides(currentDate)
-			// .then((response) => {
-			// 	console.log("Test Current rides calls", response)
-			// })
+		// .then((response) => {
+		// 	console.log("Test Current rides calls", response)
+		// })
 	}
 	// getIncompleteList = (kidsArray, currentDate) => {
 	// 	return kidsArray.map(kid => {
@@ -112,14 +112,29 @@ class AdminDash extends Component {
 			<>
 				<p>Hello this is the Admin Dashboard</p>
 				<h5>This where kids who do not have a ride will go.</h5>
-				{this.state.availableKids.map(availableKid => (
-					<p>{availableKid.nickName}</p>))}
+				<div class="" >
+					{this.state.availableKids.map(availableKid => (
+						<p>{availableKid.nickName}</p>))}
+				</div>
 				<h5>This is where current rides will go, with a button to complete them.</h5>
-				{this.state.currentRides.map(currentRide => (
-					<p>{currentRide.user.name}</p>))}
+				<div>
+					{this.state.currentRides.map(currentRide => (
+						<>
+							<p>Driver: {currentRide.user.name}</p>
+							<p>Arrived: {currentRide.timeStamp}</p>
+							<div>Passengers: {currentRide.kids.map(kid => (
+							<p>{kid.nickName}</p>
+						 ))}</div>
+							{/* {currentRide. === '' ? null :
+                            <img id="user-Dash" class="uploaded-PIC" src={this.state.selectedCar.car.picURL} />
+                        } */}
+						</>))}
+				</div>
 				<h5>This is where a list of kids who have been picked up will go.</h5>
-				{this.state.completedKids.map(completedKid => (
-					<p>{completedKid.nickName}</p>))}
+				<div>
+					{this.state.completedKids.map(completedKid => (
+						<p>{completedKid.nickName}</p>))}
+				</div>
 			</>
 		);
 	}
