@@ -5,6 +5,8 @@ import RideManager from '../../modules/RideManager'
 import DashKidCard from './DashKidCard'
 import DashKidCardCompleted from './DashKidCardCompleted'
 import moment from 'moment'
+import Select from '@material-ui/icons/Delete';
+import MenuItem from '@material-ui/core/MenuItem';
 
 class UserDash extends Component {
 	state = {
@@ -18,10 +20,10 @@ class UserDash extends Component {
 	};
 
 	toggle = () => {
-        this.setState(prevState => ({
-            rideCreated: !prevState.rideCreated
-        }))
-    }
+		this.setState(prevState => ({
+			rideCreated: !prevState.rideCreated
+		}))
+	}
 
 	handleFieldChange = evt => {
 		console.log("HandleField change is called", evt.target.id)
@@ -67,30 +69,31 @@ class UserDash extends Component {
 				this.setState({
 					ride: response,
 				}))
-				.then(() =>
-		this.state.passengers.forEach(passenger => {
-			let passengerObj = {
+			.then(() =>
+				this.state.passengers.forEach(passenger => {
+					let passengerObj = {
 						rideId: this.state.ride.id,
 						kidId: passenger
 					}
 					console.log("passenger Object", passengerObj)
 					RideManager.addPassenger(passengerObj)
-		// {this.state.passengers.map(passenger =>
-		// 	let passengerObj = {
-		// 		rideId: this.state.ride.id,
-		// 		kidId: passenger
-		// 	}
-		// 	RideManager.addPassenger(passengerObj))}
-	}))
-	console.log("new Ride", newRide)
-	this.toggle()
-}
+					// {this.state.passengers.map(passenger =>
+					// 	let passengerObj = {
+					// 		rideId: this.state.ride.id,
+					// 		kidId: passenger
+					// 	}
+					// 	RideManager.addPassenger(passengerObj))}
+				}))
+		console.log("new Ride", newRide)
+		this.toggle()
+	}
 
 	cancelRide = () => {
 		RideManager.deleteRide(this.state.ride.id).then(() => {
 			this.toggle()
-		this.getRideData()
-	})}
+			this.getRideData()
+		})
+	}
 
 	componentDidMount() {
 		const newState = {}
@@ -120,53 +123,65 @@ class UserDash extends Component {
 	}
 
 	render() {
-		console.log("selected car",this.state.selectedCar)
+		console.log("selected car", this.state.selectedCar)
 		return (
 			<>
-				<p>Hello this is the User Dashboard</p>
-				<select id='selectedCar' onChange={this.handleFieldChange}>
-					<option value="" disabled selected>Select your Car</option>
-					{this.state.arrayCars.map(arrayCar =>
-						<option key={arrayCar.car.id} value={arrayCar.car.id}>{arrayCar.car.nickName}</option>
-					)}
-				</select>
-				{
-					this.state.arrayKids.map(arrayKid =>
-						{return this.state.rideCreated === false ?
-						<DashKidCard
-							key={arrayKid.kid.id}
-							arrayKid={arrayKid}
-							{...this.props}
-							setPassenger={this.setPassenger}
-							removePassenger={this.removePassenger}
-							rideCreated={this.state.rideCreated}
-						/> :
-						<DashKidCardCompleted
-							key={arrayKid.kid.id}
-							arrayKid={arrayKid}
-							{...this.props}
-							rideCreated={this.state.rideCreated}
-						/>
-						})
-				}
-				{this.state.rideCreated === false ?
-				<button
-					className='addItemBtn'
-					type='primary'
-					shape='round'
-					icon='delete'
-					size='small'
-					onClick={() => {this.startRide()}}
-				>Start Ride</button>
-				:
-				<button
-					className='addItemBtn'
-					type='primary'
-					shape='round'
-					icon='delete'
-					size='small'
-					onClick={() => this.cancelRide(this.state.ride)}
-				>Cancel Ride</button> }
+				<div class="mainContainer">
+					<h1>User Dashboard</h1>
+					<div class="User-Dash">
+						<select native id='selectedCar' onChange={this.handleFieldChange}>
+							<option value="" disabled selected>Select your Car</option>
+							{this.state.arrayCars.map(arrayCar =>
+								<option key={arrayCar.car.id} value={arrayCar.car.id}>{arrayCar.car.nickName}</option>
+							)}
+						</select>
+						<Select
+							labelId="demo-simple-select-label"
+							id="demo-simple-select"
+						>
+							<MenuItem value={10}>Ten</MenuItem>
+							<MenuItem value={20}>Twenty</MenuItem>
+							<MenuItem value={30}>Thirty</MenuItem>
+						</Select>
+						{
+							this.state.arrayKids.map(arrayKid => {
+								return this.state.rideCreated === false ?
+									<DashKidCard
+										key={arrayKid.kid.id}
+										arrayKid={arrayKid}
+										{...this.props}
+										setPassenger={this.setPassenger}
+										removePassenger={this.removePassenger}
+										rideCreated={this.state.rideCreated}
+									/> :
+									<DashKidCardCompleted
+										key={arrayKid.kid.id}
+										arrayKid={arrayKid}
+										{...this.props}
+										rideCreated={this.state.rideCreated}
+									/>
+							})
+						}
+						{this.state.rideCreated === false ?
+							<button
+								className='addItemBtn'
+								type='primary'
+								shape='round'
+								icon='delete'
+								size='small'
+								onClick={() => { this.startRide() }}
+							>Start Ride</button>
+							:
+							<button
+								className='addItemBtn'
+								type='primary'
+								shape='round'
+								icon='delete'
+								size='small'
+								onClick={() => this.cancelRide(this.state.ride)}
+							>Cancel Ride</button>}
+					</div>
+				</div>
 			</>
 		);
 	}

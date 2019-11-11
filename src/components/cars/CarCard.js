@@ -7,6 +7,8 @@ import Card from '@material-ui/core/Button';
 import CardHeader from '@material-ui/core/Button';
 import CardMedia from '@material-ui/core/Button';
 import Collapse from '@material-ui/core/Collapse';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 
 
 class CarCard extends Component {
@@ -74,10 +76,9 @@ class CarCard extends Component {
                 <div class="Car-Card" main-Form id={`carCardId--${this.props.cars_user.car.id}`}>
                     {/* <p>CarCard</p> */}
                     <h3 class="car-Header">{this.props.cars_user.car.nickName}</h3>
-
                         {this.props.cars_user.car.picURL === '' ? null :
-                            <CardMedia image={this.props.cars_user.car.picURL}/>
-                            }
+                            <img class="uploaded-PIC" src={this.props.cars_user.car.picURL} />
+                        }
                     <p>Make: {this.props.cars_user.car.make} Model: {this.props.cars_user.car.model} </p>
                     <p>Year: {this.props.cars_user.car.year} Color: {this.props.cars_user.car.color}</p>
                     <p>Guardians:</p>
@@ -94,6 +95,7 @@ class CarCard extends Component {
                                 <h6>{singleCarUser.user.name}  </h6>
                                 <Button
                                     variant="contained" size="small" color="error"
+                                    startIcon={<DeleteIcon />}
                                     className='addItemBtn'
                                     type='delete'
                                     shape='round'
@@ -112,6 +114,7 @@ class CarCard extends Component {
                     />
                     <Button
                         variant="contained" size="small" color="error"
+                        startIcon={<DeleteIcon />}
                         className='addItemBtn'
                         type='primary'
                         shape='round'

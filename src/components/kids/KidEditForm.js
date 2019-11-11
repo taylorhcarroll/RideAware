@@ -1,6 +1,8 @@
 import React from 'react';
-
+import Button from '@material-ui/core/Button';
+import SaveIcon from '@material-ui/icons/Save';
 import KidManager from '../../modules/KidManager';
+import { TextField, CardContent } from '@material-ui/core';
 class KidEditForm extends React.Component {
     state = {
         visible: false,
@@ -10,8 +12,13 @@ class KidEditForm extends React.Component {
         age: "",
         picURL: "",
         loadingStatus: false,
+        expanded: false
     };
-
+    toggle = () => {
+        this.setState(prevState => ({
+            expanded: !prevState.expanded
+        }))
+    }
     handleFieldChange = evt => {
         const stateToChange = {};
         stateToChange[evt.target.id] = evt.target.value;
@@ -42,7 +49,8 @@ class KidEditForm extends React.Component {
                 nickName: kid.nickName,
                 name: kid.name,
                 age: kid.age,
-                picURL: kid.picURL
+                picURL: kid.picURL,
+                expanded: false
             });
         });
     }
@@ -57,95 +65,103 @@ class KidEditForm extends React.Component {
     render() {
         return (
             <div className='addBtnContainer'>
-                <button
+                <Button
                     className='addItemBtn'
                     type='primary'
+                    variant="contained" size="small" color="secondary"
                     shape='round'
                     icon='edit'
                     size='small'
-                    // onClick={this.showDrawer}
+                    onClick={this.toggle}
                 >
-                    Show Edit Kid
-				</button>
-
-                {/* <Drawer
-                    width='350'
-                    title='Edit News'
-                    placement='right'
-                    closable={false}
-                    onClose={this.onClose}
-                    visible={this.state.visible}
-                > */}
-                    <form className='login-form'>
-                        <div className='formField'>
-                            {/* <Input type="date"
+                    {this.state.expanded === false ? "Show" : "Hide"} Edit
+				</Button>
+                {this.state.expanded === true ?
+                <CardContent>
+                < form className='login-form'>
+                    <div className='formField'>
+                        {/* <Input type="date"
                         required onChange={this.handleFieldChange}
                         id="date" placeholder="Date"
                         value={this.state.date}
                         prefix={
                             <Icon type='calendar' style={{ color: 'rgba(0,0,0,.25)' }} />
                     }/> */}
-                        </div>
-                        <div className='formField'>
-                            <input
-                                type='text'
-                                required
-                                onChange={this.handleFieldChange}
-                                id='nickName'
-                                placeholder='Nick name'
-                                value={this.state.nickName}
-                                prefix={
-                                    <icon type='pic-left' style={{ color: 'rgba(0,0,0,.25)' }} />
-                                }
-                            />
-                            <input
-                                type='text'
-                                required
-                                onChange={this.handleFieldChange}
-                                id='name'
-                                placeholder='name'
-                                value={this.state.name}
-                                prefix={
-                                    <icon type='pic-left' style={{ color: 'rgba(0,0,0,.25)' }} />
-                                }
-                            />
-                            <input
-                                type='text'
-                                pattern="[0-9]{3}"
-                                required
-                                onChange={this.handleFieldChange}
-                                id='age'
-                                placeholder='age'
-                                value={this.state.age}
-                                prefix={
-                                    <icon type='pic-left' style={{ color: 'rgba(0,0,0,.25)' }} />
-                                }
-                            />
-                             <input
-                                type='text'
-                                required
-                                onChange={this.handleFieldChange}
-                                id='picURL'
-                                placeholder='replace image'
-                                value={this.state.picURL}
-                                prefix={
-                                    <icon type='pic-left' style={{ color: 'rgba(0,0,0,.25)' }} />
-                                }
-                            />
-                        </div>
+                    </div>
+                    <div className='formField'>
+                        <TextField
+                            type='text'
+                            required
+                            label='Nick Name'
+                            margin="dense"
+                            variant="outlined"
+                            onChange={this.handleFieldChange}
+                            id='nickName'
+                            placeholder='Nick name'
+                            value={this.state.nickName}
+                            prefix={
+                                <icon type='pic-left' style={{ color: 'rgba(0,0,0,.25)' }} />
+                            }
+                        />
+                        <TextField
+                            type='text'
+                            required
+                            label='Name'
+                            margin="dense"
+                            variant="outlined"
+                            onChange={this.handleFieldChange}
+                            id='name'
+                            placeholder='name'
+                            value={this.state.name}
+                            prefix={
+                                <icon type='pic-left' style={{ color: 'rgba(0,0,0,.25)' }} />
+                            }
+                        />
+                        <TextField
+                            type='text'
+                            pattern="[0-9]{3}"
+                            required
+                            label='Age'
+                            margin="dense"
+                            variant="outlined"
+                            onChange={this.handleFieldChange}
+                            id='age'
+                            placeholder='age'
+                            value={this.state.age}
+                            prefix={
+                                <icon type='pic-left' style={{ color: 'rgba(0,0,0,.25)' }} />
+                            }
+                        />
+                        {/* <TextField
+                            type='text'
+                            required
+                            margin="dense"
+                            variant="outlined"
+                            onChange={this.handleFieldChange}
+                            id='picURL'
+                            placeholder='replace image'
+                            value={this.state.picURL}
+                            prefix={
+                                <icon type='pic-left' style={{ color: 'rgba(0,0,0,.25)' }} />
+                            } */}
+                    </div>
 
-                        <div className='formField'>
-                            <button
-                                className='login-form-button'
-                                type='primary'
-                                disabled={this.state.loadingStatus}
-                                onClick={this.handleClick}
-                                icon='edit'
-                            >
-                                Confirm Changes
-							</button>
-                        </div>
-                    </form>
+                    <div className='formField'>
+                        <Button
+                            className='login-form-button'
+                            type='primary'
+                            startIcon={<SaveIcon />}
+                            variant="contained" size="small" color="primary"
+                            disabled={this.state.loadingStatus}
+                            onClick={this.handleClick}
+                            icon='edit'
+                        >
+                            Confirm Changes
+							</Button>
+                    </div>
+                </form>
+                </CardContent>
+                : ""}
             </div>
         );
     }

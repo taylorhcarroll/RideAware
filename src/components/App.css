@@ -62,6 +62,41 @@ coral pink shit: FF6584 */
     padding: 15px;
     border-radius: 25px
 }
+.Ride-Card {
+    flex-flow: column wrap;
+    justify-content: center;
+    margin: auto;
+    min-width: 100%;
+    margin-bottom: 10%;
+    background-color: #F0EFFF;
+    color: #6C63ff;
+    padding: 15px;
+    border-radius: 25px
+}
+.ride-history-kid {
+    list-style-type: circle;
+    padding-left: 3%;
+    /* background-color: #6C63ff;
+    color: #F0EFFF; */
+}
+
+.User-Dash {
+    justify-content: center;
+    display: flex;
+    max-width: 40%;
+    flex-flow: column wrap;
+    margin: auto;
+    min-width: 100%;
+    margin-bottom: 10%;
+    background-color: #F0EFFF;
+    color: #6C63ff;
+    padding: 15px;
+}
+
+.Dash-Kid-Button {
+    display: flex;
+    flex-flow: row;
+}
 
 .car-Header {
     /* font-size: 2em; */
@@ -102,10 +137,12 @@ coral pink shit: FF6584 */
     display: flex;
     /* flex-flow: wrap; */
     margin: auto;
-    max-width: 50%;
+    /* max-width: 50%; */
     justify-content: center;
     padding-bottom: 1%;
-    align-items: center
+    align-items: center;
+    background-color: #f1f1f1;
+    margin-bottom: 10px;
 }
 
 .CarDriverSearchRow {
@@ -134,3 +171,13 @@ coral pink shit: FF6584 */
     justify-content: center;
     align-items: center
 }
+
+
+#nav {
+    background-color: #f1f1f1;
+  }
+
+  li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }

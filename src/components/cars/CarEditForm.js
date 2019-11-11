@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import CarManager from '../../modules/CarManager';
 import { CardContent } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField'
+import SaveIcon from '@material-ui/icons/Save';
 class CarEditForm extends React.Component {
     state = {
         visible: false,
@@ -181,6 +182,7 @@ class CarEditForm extends React.Component {
                             <div className='formField'>
                                 <Button
                                     className='login-form-button'
+                                    startIcon={<SaveIcon />}
                                     variant="contained" size="small" color="primary"
                                     type='primary'
                                     disabled={this.state.loadingStatus}

@@ -2,6 +2,9 @@ import React, { Component } from "react"
 import { Link, withRouter } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import AuthManager from '../../modules/AuthManager';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 
 class NavBar extends Component {
@@ -25,7 +28,7 @@ class NavBar extends Component {
     render() {
         return (
             <nav id="navBar">
-                <ul className="nav nav-pills nav-fill">
+                <ul id="nav" className="nav nav-pills nav-fill">
                 {this.props.admin === "true" ?
                     <li className="nav-item">
                         <Link className="nav-link" to="/AdminDash">Admin Portal</Link>
