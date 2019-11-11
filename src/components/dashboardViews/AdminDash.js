@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AdminManager from '../../modules/AdminManager';
 import moment from 'moment'
 import RideManager from '../../modules/RideManager';
+import Button from '@material-ui/core/Button';
 
 class AdminDash extends Component {
 	state = {
@@ -108,6 +109,7 @@ class AdminDash extends Component {
 	// 	})
 	// }
 	render() {
+		console.log("current rides list", this.state.currentRides)
 		return (
 			<>
 				<p>Hello this is the Admin Dashboard</p>
@@ -120,15 +122,23 @@ class AdminDash extends Component {
 				<div>
 					{this.state.currentRides.map(currentRide => (
 						<>
+							{currentRide.user.picURL === '' ? null :
+								<div>
+									<img class="userPic-Admin-Dash" src={currentRide.user.picURL} />
+								</div>
+							}
 							<p>Driver: {currentRide.user.name}</p>
+							<p>Car: {currentRide.car.color}</p>
 							<p>Arrived: {currentRide.timeStamp}</p>
 							<div>Passengers: {currentRide.kids.map(kid => (
-							<p>{kid.nickName}</p>
-						 ))}</div>
-							{/* {currentRide. === '' ? null :
-                            <img id="user-Dash" class="uploaded-PIC" src={this.state.selectedCar.car.picURL} />
-                        } */}
-						</>))}
+								<p>{kid.nickName}</p>
+							))}
+								<Button>
+									Complete Ride
+							 </Button>
+							</div>
+						</>
+					))}
 				</div>
 				<h5>This is where a list of kids who have been picked up will go.</h5>
 				<div>

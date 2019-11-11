@@ -34,7 +34,7 @@ export default {
                     searchString += `&id=${id}`
                 })
                 return fetch(
-                    `http://localhost:8088/rides?include=kids&expand=user${searchString}`
+                    `http://localhost:8088/rides?include=kids&expand=user&expand=car${searchString}`
                 ).then(response => response.json())
             })
     },

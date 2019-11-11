@@ -69,7 +69,7 @@ class UserDash extends Component {
 		const newRide = {
 			userId: parseInt(sessionStorage.getItem('activeUser')),
 			date: moment(new Date()).format("MMM Do YY"),
-			carId: this.state.selectedCar,
+			carId: this.state.selectedCar.car.id,
 			timeStamp: moment(new Date()).format('LT'),
 			//moment(new Date()).format('MMMM Do YYYY, h:mm:ss a'),
 			editTimeStamp: "",
