@@ -126,6 +126,11 @@ coral pink shit: FF6584 */
     justify-content: center !important;
 }
 
+.admin-Container {
+    display: flex;
+    flex-flow: row;
+}
+
 .sectionHeader {
     display: flex;
     flex-flow: column wrap;
