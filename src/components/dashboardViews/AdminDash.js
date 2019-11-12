@@ -4,6 +4,7 @@ import moment from 'moment'
 import RideManager from '../../modules/RideManager';
 import Button from '@material-ui/core/Button';
 import Done from '@material-ui/icons/Done'
+import { Fab } from '@material-ui/core';
 
 class AdminDash extends Component {
 	state = {
@@ -176,17 +177,27 @@ class AdminDash extends Component {
 													</div>
 												</div>
 												<div class="flip-card-back">
-													<p>Arrived: {currentRide.timeStamp}</p>
-													<p>Driver: {currentRide.user.name}</p>
-													<p>Car Desc: {currentRide.car.color} {currentRide.car.make} {currentRide.car.model}</p>
-													<div class="admin-Queue-Main-Passengers">
-														{/* <div> */}
-														Passengers: {currentRide.kids.map(kid => (
-															<li>{kid.nickName}</li>
-														))}
-														{/* </div> */}
+													<div class="div1-flip-card">
+														<p>Arrived: {currentRide.timeStamp}</p>
+														<p>Driver: {currentRide.user.name}</p>
+														<p>Car Description: {currentRide.car.color} {currentRide.car.make} {currentRide.car.model}</p>
+													</div>
+													<div class="div2-flip-card">
+														<div class="admin-Queue-Main-Passengers">
+															{/* <div> */}
+															Passengers: {currentRide.kids.map(kid => (
+																<li>{kid.nickName}</li>
+															))}
+														</div>
 													</div>
 												</div>
+											</div>
+											<div class="admin-Dash-Button">
+												<Fab
+													variant="extended" color="primary"
+													onClick={() => this.completeRide(currentRide.id)}>
+													<Done /> Picked Up
+							 				</Fab>
 											</div>
 										</div>
 										<div class="admin-Queue-Main-Ride">
@@ -212,10 +223,6 @@ class AdminDash extends Component {
 										))}
 										</div> */}
 											</div>
-											<Button
-												onClick={() => this.completeRide(currentRide.id)}>
-												<Done />Complete Ride
-							 </Button>
 										</div>
 									</>
 								}

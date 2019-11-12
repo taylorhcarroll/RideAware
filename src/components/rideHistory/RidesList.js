@@ -29,8 +29,8 @@ class RidesList extends Component {
 		return (
 			<>
 				<div className='mainContainer'>
+					<h1>Past Rides</h1>
 					<div className='sectionHeader'>
-						<h1>Past Rides</h1>
 					</div>
 					{this.state.rides.map(ride => (
 						<RideCard
@@ -40,9 +40,9 @@ class RidesList extends Component {
 							ride={ride}
 						/>
 					))}
-					</div>
-            </>
-				);
-			}
-		}
-		export default RidesList;
+				</div>
+			</>
+		);
+	}
+}
+export default RidesList;

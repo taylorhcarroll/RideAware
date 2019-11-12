@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Button from '@material-ui/core/Button';
 
 class DashKidCardCompleted extends Component {
     state = {
@@ -17,7 +17,10 @@ class DashKidCardCompleted extends Component {
         console.log(this.props.rideCreated, "rideCreated props")
         return (
             <>
-                <div id="`DashKidCardId--{this.props.arrayKid.kid.id}`">
+                <div class="Dash-Kid-Button" id="`DashKidCardId--{this.props.arrayKid.kid.id}`">
+                    <Button variant="contained" color="secondary" disabled>
+                        Disabled
+                    </Button>
                     <p>Name: {this.props.arrayKid.kid.nickName}</p>
                 </div>
             </>

@@ -51,8 +51,9 @@ coral pink shit: FF6584 */
 }
 
 .userPic-Admin-Dash {
-    max-width: 75px;
+    max-width: 100%;
     border-radius: 50%;
+    
 }
 
 #user-Dash {
@@ -142,7 +143,8 @@ coral pink shit: FF6584 */
 
 }
 
-.admin-Queue-Main-Passenger {
+.admin-Queue-Main-Passengers {
+    text-align: left;
 
 }
 
@@ -209,6 +211,12 @@ coral pink shit: FF6584 */
     padding-bottom: 10px
 }
 
+.dash-kid-name {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    margin-left: 2em;
+}
+
 .CarDriverSearchRow h5 {
     padding-right: 10px
 }
@@ -247,12 +255,23 @@ coral pink shit: FF6584 */
     width: 300px;
     height: 200px;
     perspective: 1000px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
   }
-
+.flip-card-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 2em;
+    margin-left: .5em;
+    margin-right: .5em;
+}
   .flip-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
+    min-width: 100%;
     text-align: center;
     transition: transform 0.6s;
     transform-style: preserve-3d;
@@ -279,4 +298,23 @@ coral pink shit: FF6584 */
     background-color: #2980b9 !important;
     color: white !important;
     transform: rotateY(180deg);
+    display: flex;
+    flex-flow: row;
   }
+
+.div1-flip-card {
+    display: flex;
+    flex-flow: column wrap;
+    text-align: left;
+    padding-left: 1em;
+    padding-top: 1em;
+}
+
+.div2-flip-card {
+    padding-top: 1em;
+    min-width: 50%
+}
+
+.admin-Dash-Button {
+    padding-left: 2em;
+}
