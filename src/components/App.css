@@ -106,6 +106,47 @@ coral pink shit: FF6584 */
     padding: 15px;
 }
 
+.admin-Queue {
+    /* flex-flow: column wrap; */
+    justify-content: center;
+    /* margin: auto; */
+    flex: 1;
+    margin-bottom: 10%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    background-color: #F0EFFF;
+    color: #6C63ff;
+    padding: 15px;
+    border-radius: 25px
+}
+
+.admin-Queue-Main {
+    justify-content: center;
+    flex-flow: row wrap;
+    flex: 3;
+    margin-bottom: 10%;
+    background-color: #F0EFFF;
+    color: #6C63ff;
+    padding: 15px;
+    border-radius: 25px
+}
+
+.admin-Queue-Main-Ride {
+    display: flex;
+    flex-direction: row;
+}
+.admin-Queue-Main-Car {
+}
+
+.admin-Queue-Main-Driver {
+
+}
+
+.admin-Queue-Main-Passenger {
+
+}
+
+
 .Dash-Kid-Button {
     display: flex;
     flex-flow: row;
@@ -198,4 +239,44 @@ coral pink shit: FF6584 */
   li a:hover:not(.active) {
     background-color: #555;
     color: white;
+  }
+
+/* flip card animation on admin side */
+  .flip-card {
+    background-color: transparent;
+    width: 300px;
+    height: 200px;
+    perspective: 1000px;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+  }
+
+  .flip-card-back {
+    background-color: #2980b9;
+    color: white;
+    transform: rotateY(180deg);
   }

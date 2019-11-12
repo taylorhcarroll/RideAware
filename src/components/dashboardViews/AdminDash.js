@@ -114,43 +114,69 @@ class AdminDash extends Component {
 		return (
 			<>
 				<div class="admin-Container">
-					<div class="" >
-					<h5>This where kids who do not have a ride will go.</h5>
+					<div class="admin-Queue" >
+						<h5>This where kids who do not have a ride will go.</h5>
 						{this.state.availableKids.map(availableKid => (
 							<p>{availableKid.nickName}</p>))}
 					</div>
-					<div>
-					<h5>This is where current rides will go, with a button to complete them.</h5>
+					<div class="admin-Queue-Main">
+						<div class="flip-card">
+							<div class="flip-card-inner">
+								<div class="flip-card-front">
+									<div class="flip-card-test">
+									</div>
+								</div>
+								<div class="flip-card-back">
+									<h1>John Doe</h1>
+									<p>Architect & Engineer</p>
+									<p>We love that guy</p>
+								</div>
+							</div>
+						</div>
+						<h5>This is where current rides will go, with a button to complete them.</h5>
 						{this.state.currentRides.map(currentRide => (
 							<>
-								{currentRide.user.picURL === '' ? null :
-									<div>
-										<img class="userPic-Admin-Dash" src={currentRide.user.picURL} />
+								<div class="admin-Queue-Main-Ride">
+									<p>Arrived: {currentRide.timeStamp}</p>
+									<div class="admin-Queue-Main-Driver">
+										{currentRide.user.picURL === '' ? null :
+											<div>
+												<img class="userPic-Admin-Dash" src={currentRide.user.picURL} />
+											</div>
+										}
+										<p>Driver: {currentRide.user.name}</p>
 									</div>
-								}
-								<p>Driver: {currentRide.user.name}</p>
-								{currentRide.car.picURL === '' ? null :
-									<div>
-										<img class="userPic-Admin-Dash" src={currentRide.car.picURL} />
+									<div class="admin-Queue-Main-Car">
+										{currentRide.car.picURL === '' ? null :
+											<div>
+												<img class="userPic-Admin-Dash" src={currentRide.car.picURL} />
+											</div>
+										}
+										<p>Car Desc: {currentRide.car.color} {currentRide.car.make} {currentRide.car.model}</p>
 									</div>
-								}
-								<p>Car Desc: {currentRide.car.color} {currentRide.car.make} {currentRide.car.model}</p>
-								<p>Arrived: {currentRide.timeStamp}</p>
-								<div>Passengers: {currentRide.kids.map(kid => (
-									<p>{kid.nickName}</p>
-								))}
-									<Button>
-										<Done />Complete Ride
+									<div class="admin-Queue-Main-Passengers">
+										<div>Passengers: {currentRide.kids.map(kid => (
+											<p>{kid.nickName}</p>
+										))}
+										</div>
+										<Button>
+											<Done />Complete Ride
 							 </Button>
+									</div>
 								</div>
 							</>
 						))}
 					</div>
-					<div>
-					<h5>This is where a list of kids who have been picked up will go.</h5>
+					<div class="admin-Queue" >
+						<h5>This is where a list of kids who have been picked up will go.</h5>
 						{this.state.completedKids.map(completedKid => (
 							<p>{completedKid.nickName}</p>))}
 					</div>
+					{/* <div class="admin-queue">
+					<h5>This is where a list of kids who have been picked up will go.</h5>
+						{this.state.completedKids.map(completedKid => (
+							<p>{completedKid.nickName}</p>))}
+					</div> */}
 				</div>
 			</>
 		);
