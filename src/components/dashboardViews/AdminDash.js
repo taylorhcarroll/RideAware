@@ -196,7 +196,7 @@ class AdminDash extends Component {
 												<Fab
 													variant="extended" color="primary"
 													onClick={() => this.completeRide(currentRide.id)}>
-													<Done /> Picked Up
+													<Done /> Mark Complete
 							 				</Fab>
 											</div>
 										</div>
