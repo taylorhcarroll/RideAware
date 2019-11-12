@@ -276,7 +276,7 @@ coral pink shit: FF6584 */
   }
 
   .flip-card-back {
-    background-color: #2980b9;
-    color: white;
+    background-color: #2980b9 !important;
+    color: white !important;
     transform: rotateY(180deg);
   }

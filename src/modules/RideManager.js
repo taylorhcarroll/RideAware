@@ -54,7 +54,7 @@ export default {
     },
     updateRide(editedRide) {
 		return fetch(`${remoteURL}/rides/${editedRide.id}`, {
-			method: 'PUT',
+			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json'
 			},
