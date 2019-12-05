@@ -16,7 +16,7 @@ How might we provide a safe and efficient communications tool for parental guard
 <img src="images/db-capstone.jpg" alt="db diagram">
 
 ## WireFrames
-<img src="images/IMG_9518.jpg">
+!(images/IMG_9518.jpg)
 <img src="images/IMG_9519.jpg">
 <img src="images/IMG_9520.jpg">
 
