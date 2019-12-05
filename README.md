@@ -1,83 +1,48 @@
-# Nutshell: The Information Dashboard
+# RideAware: The Safest Way to Pick Up Your Child from School
 
-Nutshell is a new product offering that you have been tasked with building. It's a dashboard for people to use to organize their daily tasks, events, news article, friends, and chat messages.
+<img src="images/login_splash.jpg" alt="splash image">
 
-You will be using the React library to build out this application.
+RideAware facilitates parents/guardians picking up their children from school. The app allows parents to let teachers know when they are at the school and ready to pick them up, and the teachers are able to see who is picking them and what car to look out for and once picked up mark them as completed. The app will keep a record of whom was picked up and by which guardian and in what car. Users are able to upload name/picture/age of their kid for identification, and picture/nickname/make/model/color of car.
 
-To start you off, here's an example of what the resources in your API should look like once it's populated with some data from your application.
 
-### Users
+### Challenge Statement
 
-```json
-{ "id": 1, "username": "Steve", "email": "me@me.com" }
-```
+How might we provide a safe and efficient communications tool for parental guardians and school staff to improve the after school child car-rider process?
 
-### Messages
+## Persona
+<img src="images/persona.jpg">
 
-```json
-{ "id": 1, "userId": 1, "message": "What's up?" }
-```
+## ERD
+<img src="images/db-capstone.jpg" alt="db diagram">
 
-### News
+## WireFrames
+<img src="images/IMG_9518.jpg">
+<img src="images/IMG_9519.jpg">
+<img src="images/IMG_9520.jpg">
 
-```json
-{
-    "id": 1,
-    "userId": 2,
-    "url": "https://www.quantamagazine.org/newfound-wormhole-allows-information-to-escape-black-holes-20171023/",
-    "title": "Wormholes Allow Information to Escape Black Holes",
-    "synopsis": "Check out this recent discovery about workholes"
-}
-```
+## Screenshots of Live App
+<img src="images/screenshot1">
+<img src="images/screenshot2">
+<img src="images/screenshot3">
+<img src="images/screenshot4">
 
-### Friends
+## User Testing
 
-```json
-{ "id": 1, "userId": 1, "loggedInUserId": 3 }
-```
+For research I interviewed some parents that have children that attend Dan Mills Elementary and school faculty who have been involved in the after-school car-rider process.
 
-### Tasks
+## Lessons Learned
 
-```json
-{ "id": 1, "userId": 3, "task": "Take out garbage" }
-```
+    Observing user testing throughout the creation of a project can help keep focus on areas that are important to the end user.
+    Referring to the personas can help guide decision making.
 
-## Professional Requirements
+## To Install
 
-1. All teammates must use React and JSON-server. 
-1. Each module should have a comment at the top with the following info: author(s) and purpose of module
-1. The README for your project should include instructions on how another person can download and run the application
-1. An ERD showing the database relationships. A screenshot/image should be included on your README.
+In the project directory, run: npm install
 
-## How to Handle Authentication
+Followed by:
 
-You will be using session storage to keep track of which user has logged into Nutshell. When the user fills out the registration form, you will POST their username and password to the `users` collection in your API. You will then immediately take the `id` of the object in the response and save it to session storage.
+npm start Runs the app in the development mode.
 
-```js
-sessionStorage.setItem("activeUser", user.id)
-```
+To start the server run json-server-relationship -p 8088 -w database.json
 
-If you add a Logout feature, all you will need to do is remove the session storage item.
-
-```js
-sessionStorage.removeItem("activeUser")
-```
-
-## Keep in mind some tips for a good usable app
-1. Use acceptable conventions
-   * Logo positioned at top left
-   * Navigation across the top or down the left side
-2. Visual hierarchy
-   * Most important information is the most prominent
-3. Break pages up into defined sections
-   * Logically related content should be related visually
-4. That which is clickable should be obviously clickable.
-5. Eliminate distractions
-   * Use only two typefaces
-   * Limit color pallet (3 colors with black and white)
-   * Use a grid
-6. Support scanning (users don't read)
-   * Use plenty of headings
-   * Short paragraphs
-   * Bulleted lists
-7. Strive for consistency.
+Open http://localhost:3000 to view it in the browser.
