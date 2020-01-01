@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import AuthManager from '../../modules/AuthManager';
 import Register from '../auth/Register';
 import { withRouter } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField'
+
 // import { Spring } from 'react-spring/renderprops';
 
 class Login extends Component {
@@ -44,8 +47,10 @@ class Login extends Component {
 			} else if (response[0].password === password) {
 				//response[0].id is the ID of the user you logged in with,
 				//in case of "Steve" it would be "1"
+				console.log("logged in user", response[0].admin)
 				this.props.setUser(response[0].id);
-				this.props.history.push(`/`);
+				this.props.adminCheck(response[0].admin)
+				this.props.history.push(`/UserDash`);
 			}
 		});
 	};
@@ -53,9 +58,20 @@ class Login extends Component {
 	render() {
 		return (
 			<>
-				{this.state.hideReg && (
-					<>
-						{/* <Spring
+				<div class="login-Wrapper">
+					<div class="landing-Container">
+						<h1>Ride Aware</h1>
+						<h6>The safest way to pick your child up from school.</h6>
+						<img
+							src='/images/login_splash.png'
+							alt='parent seeing kid off to school'
+							height='auto'
+							width='350px'
+						// z-index= '-2'
+						/>
+						{this.state.hideReg && (
+							<>
+								{/* <Spring
 							from={{ opacity: 0 }}
 							to={{ opacity: 1 }}
 							//config={{ duration: 500 }}
@@ -63,62 +79,71 @@ class Login extends Component {
 							{props => (
 								<div style={props}> */}
 
-						<form
-							onSubmit={this.handleLogin}
-							id='loginForm'
-							className='login-form'
-						>
-							<div className='formField'>
-								<input
-									placeholder='Username'
-									onChange={this.handleFieldChange}
-									type='userName'
-									id='userName'
-									required=''
-									autoFocus=''
-								/>
-							</div>
-							<div className='formField'>
-								<input
-									prefix={
-										<icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
-									}
-									type='password'
-									placeholder='Password'
-									onChange={this.handleFieldChange}
-									id='password'
-									required=''
-								/>
-							</div>
-							<div className='formField'>
-								{/* <Checkbox>Remember me</Checkbox> */}
-								<button type='submit' className='login-form-button'>
-									Log in
-								</button>
-								<p className='regLink' onClick={this.showLogin} href=''>
-									Or register now!
-								</p>
-							</div>
-						</form>
-						{/* </div>
+								<form
+									onSubmit={this.handleLogin}
+									id='loginForm'
+									className='login-form'
+								>
+									<div className='formField'>
+										<TextField
+											//placeholder='Username'
+											onChange={this.handleFieldChange}
+											type='userName'
+											id='userName'
+											required=''
+											autoFocus=''
+											label='Username'
+											margin="dense"
+											variant="outlined"
+										/>
+									</div>
+									<div className='formField'>
+										<TextField
+											prefix={
+												<icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />
+											}
+											type='password'
+											label='Password'
+											//placeholder='Password'
+											onChange={this.handleFieldChange}
+											id='password'
+											required=''
+											margin="dense"
+											variant="outlined"
+										/>
+									</div>
+									<div className='formField'>
+										{/* <Checkbox>Remember me</Checkbox> */}
+										<div class="login-button-container">
+											<Button variant="contained" size="small" color="primary" type='submit' className='login-form-button'>
+												Log in
+										</Button>
+											<Button size="small" variant="contained" color="secondary" className='regLink' onClick={this.showLogin} href=''>
+												Register</Button>
+										</div>
+									</div>
+								</form>
+								{/* </div>
 							)}
 						</Spring> */}
-					</>
-				)}
+							</>
+						)}
 
-				{!this.state.hideReg && (
-					// <Spring
-					// 	from={{ opacity: 0 }}
-					// 	to={{ opacity: 1 }}
-					// 	//config={{ duration: 500 }}
-					// >
-					// 	{props => (
-					// 		<div style={props}>
-					<Register {...this.props} hideReg={this.hideReg} />
-					// 		</div>
-					// 	)}
-					// </Spring>
-				)}
+						{!this.state.hideReg && (
+							// <Spring
+							// 	from={{ opacity: 0 }}
+							// 	to={{ opacity: 1 }}
+							// 	//config={{ duration: 500 }}
+							// >
+							// 	{props => (
+							// 		<div style={props}>
+							<Register {...this.props} hideReg={this.hideReg} />
+							// 		</div>
+							// 	)}
+							// </Spring>
+						)}
+					</div>
+				</div>
 			</>
 		);
 	}

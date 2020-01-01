@@ -24,35 +24,37 @@ class CarsList extends Component {
         });
     };
     // addDriver = () => {
-	// 	CarManager.addDriver(userId, parsedResponse.id).then(() => {
-	// 		this.getData()
-	// 				//call a set state function for all modules
-	// 			});
-	// };
+    // 	CarManager.addDriver(userId, parsedResponse.id).then(() => {
+    // 		this.getData()
+    // 				//call a set state function for all modules
+    // 			});
+    // };
     render() {
         return (
             <>
-            <div className='mainContainer'>
-                <div className='sectionHeader'>
-                    <h1>Hello this is a Car List</h1>
-                </div>
-                <CarAddForm
-                        getData={this.getData}
-                        addDriver={this.addDriver}
-                        {...this.props}/>
+                <div className='mainContainer'>
+                    <h1>Your Cars</h1>
+                    <div className='sectionHeader'>
+                        {/* <h1>Your Cars</h1> */}
+                        <h3>Add a Car</h3>
+                        <CarAddForm
+                            getData={this.getData}
+                            addDriver={this.addDriver}
+                            {...this.props} />
+                    </div>
                     {this.state.cars_users.map(cars_user => (
                         <CarCard
-                             key={cars_user.id}
-                             cars_user={cars_user}
+                            key={cars_user.id}
+                            cars_user={cars_user}
                             {...this.props}
                             addDriver={this.addDriver}
-                        getData={this.getData}
+                            getData={this.getData}
                         />
                     ))}
                 </div>
-                </>
-                );
-            }
-        }
+            </>
+        );
+    }
+}
 
 export default CarsList;

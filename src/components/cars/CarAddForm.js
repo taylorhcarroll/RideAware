@@ -1,6 +1,14 @@
 import React from 'react';
 import CarManager from '../../modules/CarManager';
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField'
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
+const uploadPreset = 'rideAware';
+const uploadURL = ' https://api.cloudinary.com/v1_1/nss-35/image/upload';
 class CarAddForm extends React.Component {
     state = {
         userId: '',
@@ -9,9 +17,19 @@ class CarAddForm extends React.Component {
         model: "",
         year: "",
         color: "",
-        picURL: "placeHolder.jpeg",
+        uploadURL: null,
+        file: null,
+        picURL: "",
         loadingStatus: false,
+        expand: false
+
     };
+
+    toggle = () => {
+        this.setState(prevState => ({
+            expanded: !prevState.expanded
+        }))
+    }
 
     handleFieldChange = evt => {
         const stateToChange = {};
@@ -19,6 +37,31 @@ class CarAddForm extends React.Component {
         this.setState(stateToChange);
     };
 
+    // this is the functionality for react-dropzone to upload images
+    onImageDrop(files) {
+        this.setState({
+            uploadedFile: files[0]
+        });
+        this.handleImageUpload(files[0]);
+    }
+    // this uploads the image to cloudinary, and sends a URL to the image back in its place
+    handleImageUpload(file) {
+        let upload = request.post(uploadURL)
+            .field('upload_preset', uploadPreset)
+            .field('file', file);
+
+        upload.end((err, response) => {
+            if (err) {
+                console.error(err);
+            }
+
+            if (response.body.secure_url !== '') {
+                this.setState({
+                    picURL: response.body.secure_url
+                });
+            }
+        });
+    }
     // showDrawer = () => {
     // 	this.setState({
     // 		visible: true
@@ -49,7 +92,7 @@ class CarAddForm extends React.Component {
                 model: this.state.model,
                 year: this.state.year,
                 color: this.state.color,
-                picURL: "placeHolder.jpeg",
+                picURL: this.state.picURL,
             };
             CarManager.createCar(car, userId).then(this.props.getData);
         }
@@ -78,69 +121,116 @@ class CarAddForm extends React.Component {
     render() {
         return (
             <div className='addBtnContainer'>
-
+                <div class="add-Button">
+                    <Fab color="primary" aria-label="add" onClick={this.toggle}>
+                        <AddIcon />
+                    </Fab>
+                </div>
+                {this.state.expanded === true ?
                 <form
                     onSubmit={this.handleLogin}
                     id='loginForm'
                     className='login-form'
                 >
                     <div className='formField'>
-                        <input
-                            placeholder='Nick Name'
+                        <TextField
                             onChange={this.handleFieldChange}
                             type='nickName'
                             id='nickName'
                             required=''
                             autoFocus=''
+                            label='Nick Name'
+                            margin="dense"
+                            variant="outlined"
                         />
                     </div>
 
                     <div className='formField'>
-                        <input
+                        <TextField
                             onChange={this.handleFieldChange}
                             type='make'
                             id='make'
-                            placeholder='make of your vehicle'
                             required=''
+                            label='Make of Vehicle'
+                            margin="dense"
+                            variant="outlined"
                         />
                     </div>
                     <div className='formField'>
-                        <input
+                        <TextField
                             onChange={this.handleFieldChange}
                             type='model'
                             id='model'
                             placeholder='model of your vehicle'
                             required=''
+                            label='Model of Vehicle'
+                            margin="dense"
+                            variant="outlined"
                         />
                     </div>
                     <div className='formField'>
-                        <input
+                        <TextField
                             onChange={this.handleFieldChange}
                             type='year'
                             id='year'
-                            placeholder='year of your vehicle'
                             required=''
+                            label='Year of Vehicle'
+                            margin="dense"
+                            variant="outlined"
                         />
                     </div>
-                    <input
+                    <TextField
                         onChange={this.handleFieldChange}
                         type='text'
                         id='color'
-                        placeholder='color of your vehicle'
                         required=''
+                        label='Color of Vehicle'
+                        margin="dense"
+                        variant="outlined"
                     />
+                    <div>
+                        <div className="FileUpload">
+                            <Dropzone
+                                onDrop={this.onImageDrop.bind(this)}
+                                accept="image/*"
+                                multiple={false}>
+                                {({ getRootProps, getInputProps }) => {
+                                    return (
+                                        <div
+                                            {...getRootProps()}
+                                        >
+                                            <input {...getInputProps()} /> ADD PICTURE:
+                                                    {
+                                                <p>Try dragging a picture here, or click to select a file to upload.</p>
+                                            }
+                                        </div>
+                                    )
+                                }}
+                            </Dropzone>
+                        </div>
+
+                        <div>
+                            {this.state.picURL === '' ? null :
+                                <div>
+                                    <p>{this.state.name}</p>
+                                    <img src={this.state.picURL} />
+                                </div>}
+                        </div>
+                    </div>
                     <div className='formField'>
-							<button
-								className='addCar-form-button'
-								type='primary'
-								disabled={this.state.loadingStatus}
-								onClick={this.handleClick}
-								icon='add'
-							>
-								Submit
-							</button>
-						</div>
-                    </form>
+                        <Button
+                            className='addCar-form-button'
+                            type='primary'
+                            disabled={this.state.loadingStatus}
+                            onClick={this.handleClick}
+                            icon='add'
+                            variant="contained" size="small" color="primary"
+                        >
+                            Submit
+                        </Button>
+                    </div>
+                </form>
+                : "" }
             </div>
         );
     }
@@ -149,64 +239,3 @@ class CarAddForm extends React.Component {
 export default CarAddForm;
 
 
-{/* <Form>
-                        <div className='formField'>
-                            <Input
-                                type='date'
-                                required
-                                onChange={this.handleFieldChange}
-                                id='date'
-                                placeholder='Date'
-                                prefix={
-                                    <Icon type='calendar' style={{ color: 'rgba(0,0,0,.25)' }} />
-                                }
-                            />
-                        </div>
-                        <div className='formField'>
-                            <Input
-                                type='text'
-                                required
-                                onChange={this.handleFieldChange}
-                                id='title'
-                                placeholder='Title'
-                                prefix={
-                                    <Icon type='pic-left' style={{ color: 'rgba(0,0,0,.25)' }} />
-                                }
-                            />
-                        </div>
-                        <div className='formField'>
-                            <Input
-                                type='text'
-                                required
-                                onChange={this.handleFieldChange}
-                                id='location'
-                                placeholder='Location'
-                                prefix={
-                                    <Icon
-                                        type='align-left'
-                                        style={{ color: 'rgba(0,0,0,.25)' }}
-                                    />
-                                }
-                            />
-                        </div>
-
-                        <div className='formField'>
-                            <Button
-                                className='login-form-button'
-                                type='primary'
-                                disabled={this.state.loadingStatus}
-                                onClick={this.handleClick}
-                                icon='add'
-                            >
-                                Submit
-							</Button>
-                        </div>
-                    </Form>
-                    <img
-                        src='/images/chase.gif'
-                        alt='Smiley face'
-                        height='auto'
-                        width='350px'
-                        z-index='-2'
-                    />
-            </div> */}

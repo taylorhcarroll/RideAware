@@ -1,0 +1,320 @@
+* {
+    font-family: 'Lato', sans-serif;
+    /* border: 1px red dotted */
+}
+
+/* light purple:
+dark purple: 6C63ff
+coral pink shit: FF6584 */
+
+.login-Wrapper{
+    display: flex;
+    margin: auto;
+    max-width: 500px;
+    justify-content: center;
+}
+
+.landing-Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: .5em;
+}
+
+.main-Form {
+    display: flex;
+    margin: auto;
+    max-width: 500px;
+    justify-content: center;
+}
+
+.FileUpload {
+    display: flex;
+    flex-flow: wrap;
+    margin: auto;
+    max-width: 200px;
+    justify-content: center;
+}
+
+.imageUpload-wrapper {
+    max-width: 200px
+}
+
+.uploaded-PIC {
+    max-width: 200px;
+    border-radius: 50%;
+}
+
+.userPic-Admin-Dash {
+    max-width: 100%;
+    border-radius: 50%;
+    
+}
+
+#user-Dash {
+    align-self: center;
+}
+
+.delete-Button {
+    background-color: coral !important;
+}
+
+.Car-Card {
+    /* display: flex; */
+    flex-flow: column wrap;
+    justify-content: center;
+    margin: auto;
+    min-width: 100%;
+    margin-bottom: 10%;
+    background-color: #F0EFFF;
+    color: #6C63ff;
+    padding: 15px;
+    border-radius: 25px
+}
+.Ride-Card {
+    flex-flow: column wrap;
+    justify-content: center;
+    margin: auto;
+    min-width: 100%;
+    margin-bottom: 10%;
+    background-color: #F0EFFF;
+    color: #6C63ff;
+    padding: 15px;
+    border-radius: 25px
+}
+.ride-history-kid {
+    list-style-type: circle;
+    padding-left: 3%;
+    /* background-color: #6C63ff;
+    color: #F0EFFF; */
+}
+
+.User-Dash {
+    justify-content: center;
+    display: flex;
+    max-width: 40%;
+    flex-flow: column wrap;
+    margin: auto;
+    min-width: 100%;
+    margin-bottom: 10%;
+    background-color: #F0EFFF;
+    color: #6C63ff;
+    padding: 15px;
+}
+
+.admin-Queue {
+    /* flex-flow: column wrap; */
+    justify-content: center;
+    /* margin: auto; */
+    flex: 1;
+    margin-bottom: 10%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    background-color: #F0EFFF;
+    color: #6C63ff;
+    padding: 15px;
+    border-radius: 25px
+}
+
+.admin-Queue-Main {
+    justify-content: center;
+    flex-flow: row wrap;
+    flex: 3;
+    margin-bottom: 10%;
+    background-color: #F0EFFF;
+    color: #6C63ff;
+    padding: 15px;
+    border-radius: 25px
+}
+
+.admin-Queue-Main-Ride {
+    display: flex;
+    flex-direction: row;
+}
+.admin-Queue-Main-Car {
+}
+
+.admin-Queue-Main-Driver {
+
+}
+
+.admin-Queue-Main-Passengers {
+    text-align: left;
+
+}
+
+
+.Dash-Kid-Button {
+    display: flex;
+    flex-flow: row;
+}
+
+.car-Header {
+    /* font-size: 2em; */
+}
+.show-Edit-Button {
+    padding: 10px
+}
+
+.mainContainer {
+    display: flex;
+    flex-flow: wrap;
+    margin: auto;
+    max-width: 50%;
+    justify-content: center !important;
+}
+
+.admin-Container {
+    display: flex;
+    flex-flow: row;
+}
+
+.sectionHeader {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    /* margin: auto; */
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+    max-width: 50%;
+    justify-content: center;
+}
+
+.mainContainer h1 {
+    min-width: 100%;
+    display: flex;
+    background-color: rgb(82, 175, 151);
+    color: white;
+    justify-content: center;
+    border-radius: 25px
+}
+
+#navBar {
+    display: flex;
+    /* flex-flow: wrap; */
+    margin: auto;
+    /* max-width: 50%; */
+    justify-content: center;
+    padding-bottom: 1%;
+    align-items: center;
+    background-color: #f1f1f1;
+    margin-bottom: 10px;
+}
+
+.CarDriverSearchRow {
+    display: flex;
+    padding-bottom: 10px
+}
+
+.dash-kid-name {
+    margin-top: 0;
+    /* margin-bottom: 1rem; */
+    margin-left: 2em;
+}
+
+.CarDriverSearchRow h5 {
+    padding-right: 10px
+}
+
+.driver-card {
+    display: flex;
+    margin-bottom: 10px
+}
+.driver-card h6{
+    padding-right: 10px;
+}
+
+.driverSearch {
+    padding-bottom: 15px
+}
+
+.add-Button {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+
+#nav {
+    background-color: #f1f1f1;
+  }
+
+  li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+
+/* flip card animation on admin side */
+  .flip-card {
+    background-color: transparent;
+    width: 300px;
+    height: 200px;
+    perspective: 1000px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+  }
+.flip-card-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 2em;
+    margin-left: .5em;
+    margin-right: .5em;
+}
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+  }
+
+  .flip-card-back {
+    background-color: #2980b9 !important;
+    color: white !important;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-flow: row;
+  }
+
+.div1-flip-card {
+    display: flex;
+    flex-flow: column wrap;
+    text-align: left;
+    padding-left: 1em;
+    padding-top: 1em;
+}
+
+.div2-flip-card {
+    padding-top: 1em;
+    min-width: 50%
+}
+
+.admin-Dash-Button {
+    padding-left: 2em;
+}

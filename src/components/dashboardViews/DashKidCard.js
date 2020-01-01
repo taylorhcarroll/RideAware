@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Switch from '@material-ui/core/Switch';
+import Button from '@material-ui/core/Button';
 
 
 class DashKidCard extends Component {
@@ -17,12 +19,12 @@ class DashKidCard extends Component {
         console.log(this.props.rideCreated, "rideCreated props")
         return (
             <>
-                <div id="`DashKidCardId--{this.props.arrayKid.kid.id}`">
-                    <p>Name: {this.props.arrayKid.kid.nickName}</p>
+                <div class="Dash-Kid-Button" id="`DashKidCardId--{this.props.arrayKid.kid.id}`">
                     {!this.props.rideCreated ?
                         <>
                             {this.state.added === true ?
-                                <button
+                                <Button
+                                    variant="contained" color="primary"
                                     className='addItemBtn'
                                     type='primary'
                                     shape='round'
@@ -35,9 +37,10 @@ class DashKidCard extends Component {
 
                                 >
                                     Add
-                        </button> :
-                                <button
-                                    className='addItemBtn'
+                        </Button> :
+                                <Button
+                                    variant="contained"
+                                    className='delete-Button'
                                     type='primary'
                                     shape='round'
                                     icon='delete'
@@ -49,7 +52,8 @@ class DashKidCard extends Component {
 
                                 >
                                     Remove
-                    </button>} </> : ""}
+                    </Button>} </> : ""}
+                    <p class="dash-kid-name">Name: {this.props.arrayKid.kid.nickName}</p>
                 </div>
             </>
         );

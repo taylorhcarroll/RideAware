@@ -27,27 +27,28 @@ class KidsList extends Component {
         console.log(this.state)
         return (
             <>
-            <div className='mainContainer'>
-                <div className='sectionHeader'>
-                    <h1>Hello this is a Kid List</h1>
-                </div>
-                <KidAddForm
-                        getData={this.getData}
-                        addGuardian={this.addGuardian}
-                        {...this.props}/>
+                <div className='mainContainer'>
+                    <h1>Your Kids</h1>
+                    <div className='sectionHeader'>
+                        <h3>Add a Kid</h3>
+                        <KidAddForm
+                            getData={this.getData}
+                            addGuardian={this.addGuardian}
+                            {...this.props} />
+                    </div>
                     {this.state.kidGuardians.map(kidGuardian => (
                         <KidCard
-                             key={kidGuardian.id}
-                             kidGuardian={kidGuardian}
+                            key={kidGuardian.id}
+                            kidGuardian={kidGuardian}
                             {...this.props}
-                        addGuardian={this.addGuardian}
-                        getData={this.getData}
+                            addGuardian={this.addGuardian}
+                            getData={this.getData}
                         />
                     ))}
                 </div>
-                </>
-                );
-            }
-        }
+            </>
+        );
+    }
+}
 
 export default KidsList;

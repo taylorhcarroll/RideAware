@@ -1,5 +1,9 @@
 import React from 'react';
 import KidManager from '../../modules/KidManager';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 class KidAddForm extends React.Component {
     state = {
@@ -9,8 +13,13 @@ class KidAddForm extends React.Component {
         age: "",
         picURL: "placeHolder.jpeg",
         loadingStatus: false,
+        expand: false
     };
-
+    toggle = () => {
+        this.setState(prevState => ({
+            expanded: !prevState.expanded
+        }))
+    }
     handleFieldChange = evt => {
         const stateToChange = {};
         stateToChange[evt.target.id] = evt.target.value;
@@ -57,54 +66,68 @@ class KidAddForm extends React.Component {
     render() {
         return (
             <div className='addBtnContainer'>
+                <div class="add-Button">
+                    <Fab color="primary" aria-label="add" onClick={this.toggle}>
+                        <AddIcon />
+                    </Fab>
+                </div>
+                {this.state.expanded === true ?
+                    <form
+                        onSubmit={this.handleLogin}
+                        id='loginForm'
+                        className='login-form'
+                    >
+                        <div className='formField'>
+                            <TextField
+                                onChange={this.handleFieldChange}
+                                type='nickName'
+                                id='nickName'
+                                required=''
+                                autoFocus=''
+                                label='Nick Name'
+                                margin="dense"
+                                variant="outlined"
+                            />
+                        </div>
 
-                <form
-                    onSubmit={this.handleLogin}
-                    id='loginForm'
-                    className='login-form'
-                >
-                    <div className='formField'>
-                        <input
-                            placeholder='Nick Name'
-                            onChange={this.handleFieldChange}
-                            type='nickName'
-                            id='nickName'
-                            required=''
-                            autoFocus=''
-                        />
-                    </div>
-
-                    <div className='formField'>
-                        <input
-                            onChange={this.handleFieldChange}
-                            type='text'
-                            id='name'
-                            placeholder='Name as listed in directory'
-                            required=''
-                        />
-                    </div>
-                    <div className='formField'>
-                        <input
-                            onChange={this.handleFieldChange}
-                            type='text'
-                            pattern="[0-9]{3}"
-                            id='age'
-                            placeholder='age'
-                            required=''
-                        />
-                    </div>
-                    <div className='formField'>
-							<button
-								className='addKid-form-button'
-								type='primary'
-								disabled={this.state.loadingStatus}
-								onClick={this.handleClick}
-								icon='add'
-							>
-								Submit
-							</button>
-						</div>
+                        <div className='formField'>
+                            <TextField
+                                onChange={this.handleFieldChange}
+                                type='text'
+                                id='name'
+                                required=''
+                                label='Full Name'
+                                margin="dense"
+                                variant="outlined"
+                            />
+                        </div>
+                        <div className='formField'>
+                            <TextField
+                                onChange={this.handleFieldChange}
+                                type='text'
+                                pattern="[0-9]*"
+                                id='age'
+                                // placeholder='age'
+                                required=''
+                                label='Age'
+                                margin="dense"
+                                variant="outlined"
+                            />
+                        </div>
+                        <div className='formField'>
+                            <Button
+                                className='addKid-form-button'
+                                type='primary'
+                                disabled={this.state.loadingStatus}
+                                onClick={this.handleClick}
+                                icon='add'
+                                variant="contained" size="small" color="primary"
+                            >
+                                Submit
+							</Button>
+                        </div>
                     </form>
+                    : "" }
             </div>
         );
     }

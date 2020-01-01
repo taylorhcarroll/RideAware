@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CarManager from '../../modules/CarManager';
 import CarDriverSearchCard from './CarDriverSearchCard';
+import TextField from '@material-ui/core/TextField'
 
 class CarDriverSearch extends Component {
 	//define what this component needs to render
@@ -41,11 +42,13 @@ class CarDriverSearch extends Component {
 					Search
 				</button> */}
 				{/* this is the input field */}
-				<input
+				<TextField
 					id='searchQuery'
 					onChange={this.handleFieldChange}
-					placeholder='Search by Name'
-				></input>
+                    label='Search by Name'
+                            margin="dense"
+                            variant="outlined"
+				></TextField>
 				{this.state.searchResults.map(driver => (
 					<CarDriverSearchCard
                         addDriver={this.props.addDriver}

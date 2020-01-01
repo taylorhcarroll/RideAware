@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import KidManager from '../../modules/KidManager'
 import KidGuardianSearch from './KidGuardianSearch'
 import KidEditForm from './KidEditForm'
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CardHeader from '@material-ui/core/Button';
+import CardMedia from '@material-ui/core/Button';
 
 class KidCard extends Component {
     state = {
@@ -41,7 +46,7 @@ class KidCard extends Component {
         console.log("Guardians here", this.props.kidGuardian)
         return (
             <>
-                <div id={`kidCardId--${this.props.kidGuardian.kid.id}`}>
+                <Card class="Car-Card" id={`kidCardId--${this.props.kidGuardian.kid.id}`}>
                     <h2>{this.props.kidGuardian.kid.nickName}</h2>
                     <p>Name: {this.props.kidGuardian.kid.name}</p>
                     <p>Age: {this.props.kidGuardian.kid.age}</p>
@@ -56,18 +61,21 @@ class KidCard extends Component {
                         addGuardian={this.props.addGuardian} />
                     {this.state.kidGuardians.map(singleKidGuardian => {
                         return singleKidGuardian.kidId === this.props.kidGuardian.kid.id ?
-                                <div key={singleKidGuardian.id}>
-                                    <p>{singleKidGuardian.user.name}  </p>
-                                    <button
-                                        className='addItemBtn'
-                                        type='primary'
-                                        shape='round'
-                                        icon='delete'
-                                        size='small'
-                                        onClick={() => this.handleDeleteGuardian(singleKidGuardian.id)}
-                                    >
-                                        Remove Guardian
-                        </button> </div>
+                            <div key={singleKidGuardian.id}>
+                                <p>{singleKidGuardian.user.name}  </p>
+                                <Button
+                                    variant="contained" size="small"
+                                    startIcon={<DeleteIcon />}
+                                    className='addItemBtn'
+                                    type='primary'
+                                    shape='round'
+                                    icon='delete'
+                                    size='small'
+                                    // className='delete-Button'
+                                    onClick={() => this.handleDeleteGuardian(singleKidGuardian.id)}
+                                >
+                                    Remove Guardian
+                        </Button> </div>
                             : ""
                     })
                     }
@@ -75,8 +83,11 @@ class KidCard extends Component {
                         {...this.props.kidGuardian}
                         getData={this.props.getData}
                     />
-                    <button
+                    <Button
                         className='addItemBtn'
+                        startIcon={<DeleteIcon />}
+                        variant="contained" size="small"
+                        className='delete-Button'
                         type='primary'
                         shape='round'
                         icon='delete'
@@ -84,9 +95,9 @@ class KidCard extends Component {
                         onClick={() => this.handleDelete(this.props.kidGuardian.kid.id)}
                     >
                         Delete Kid
-							</button>
+							</Button>
 
-                </div>
+                </Card>
             </>
         );
     }

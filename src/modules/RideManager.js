@@ -8,10 +8,35 @@ export default {
 	// 	);
     // },
     getRidesWithKids(currentUserId) {
-        console.log(`http://localhost:8088/rides?userId=${currentUserId}&include=kids`)
+        //console.log(`http://localhost:8088/rides?userId=${currentUserId}&include=kids`)
         return fetch(
             `http://localhost:8088/rides?userId=${currentUserId}&include=kids&expand=user`
         ).then(response => response.json());
+    },
+    //http://localhost:8088/rides?&date=Oct 31st 19&sort=timeStamp&PickedUp=false
+    getRidesbyDate(currentDate) {
+        console.log("getRidesbyDate",`http://localhost:8088/rides?&date=${currentDate}&sort=timeStamp&PickedUp=false`)
+        return fetch(
+            `http://localhost:8088/rides?&date=${currentDate}&sort=timeStamp&PickedUp=false`
+        ).then(response => response.json());
+    },
+    getAllCurrentRides(currentDate) {
+        let RidesbyCurrentDate = [];
+        return this.getRidesbyDate(currentDate)
+            .then(data => {
+                data.forEach(obj => {
+                    RidesbyCurrentDate.push(obj.id)
+                })
+            })
+            .then(() => {
+                let searchString = '';
+                RidesbyCurrentDate.forEach(id => {
+                    searchString += `&id=${id}`
+                })
+                return fetch(
+                    `http://localhost:8088/rides?include=kids&expand=user&expand=car${searchString}`
+                ).then(response => response.json())
+            })
     },
 	createRide(ride) {
 		return fetch(`${remoteURL}/rides/`, {
@@ -29,7 +54,7 @@ export default {
     },
     updateRide(editedRide) {
 		return fetch(`${remoteURL}/rides/${editedRide.id}`, {
-			method: 'PUT',
+			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json'
 			},
