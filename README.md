@@ -11,9 +11,13 @@ How might we provide a safe and efficient communications tool for parental guard
 
 ## Persona
 ![](RM-Images/persona.jpg)
+![](RM-Images/persona2.png)
 
 ## ERD
 ![](RM-Images/db-capstone.jpg)
+
+## Content Map
+![](RM-Images/content-map.jpg)
 
 ## WireFrames
 ![](RM-Images/IMG_9518.jpg)
