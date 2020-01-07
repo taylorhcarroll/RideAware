@@ -22,7 +22,7 @@ How might we provide a safe and efficient communications tool for parental guard
 ## WireFrames
 ![](RM-Images/IMG_9518.jpg)
 ![](RM-Images//IMG_9519.jpg)
-![](RM-Images/images/IMG_9520.jpg)
+![](RM-Images/IMG_9520.jpg)
 
 ## Screenshots of Live App
 ### User DashBoard
