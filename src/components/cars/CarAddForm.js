@@ -210,7 +210,7 @@ class CarAddForm extends React.Component {
                         </div>
 
                         <div>
-                            {this.state.picURL === '' ? null :
+                            {this.state.picURL === '' ? <img id="user-Dash" class="uploaded-PIC" src='/images/no-car-uploaded.png' /> :
                                 <div>
                                     <p>{this.state.name}</p>
                                     <img src={this.state.picURL} />

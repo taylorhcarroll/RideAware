@@ -144,9 +144,11 @@ class UserDash extends Component {
 			return (
 				<>
 					<div class="mainContainer">
-						<h1>User Dashboard</h1>
+						{/* <h1>User Dashboard</h1> */}
 						<div class="User-Dash">
-							{this.state.selectedCar === '' ? null :
+							{this.state.selectedCar === '' ?
+							<img id="user-Dash" class="uploaded-PIC" src='/images/no-car.png' />
+							:
 								<img id="user-Dash" class="uploaded-PIC" src={this.state.selectedCar.car.picURL} />
 							}
 							{/* old select */}
@@ -178,6 +180,7 @@ class UserDash extends Component {
 										/>
 									}
 								>
+									{/* please be sure you are runnimng json server relationship */}
 									<option value="" disabled selected>Select your Car</option>
 									{this.state.arrayCars.map(arrayCar =>
 										<option key={arrayCar.car.id} value={arrayCar.car.id}>{arrayCar.car.nickName}</option>

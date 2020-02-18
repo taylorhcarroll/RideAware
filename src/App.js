@@ -44,6 +44,12 @@ class App extends Component {
 			<div className='App'>
 				{this.state.user ? (
 					<>
+						<ApplicationViews
+							user={this.state.user}
+							admin={this.state.admin}
+							{...this.props}
+							activeUser={this.state.activeUser}
+						/>
 						<NavBar
 							clearUser={this.clearUser}
 							user={this.state.user}
@@ -51,12 +57,6 @@ class App extends Component {
 							activeUser={this.state.activeUser}
 							admin={this.state.admin}
 							// currentUserId={this.props.activeUser}
-						/>
-						<ApplicationViews
-							user={this.state.user}
-							admin={this.state.admin}
-							{...this.props}
-							activeUser={this.state.activeUser}
 						/>
 					</>
 				) : (

@@ -28,7 +28,7 @@ class KidsList extends Component {
         return (
             <>
                 <div className='mainContainer'>
-                    <h1>Your Kids</h1>
+                    {/* <h1>Your Kids</h1> */}
                     <div className='sectionHeader'>
                         <h3>Add a Kid</h3>
                         <KidAddForm

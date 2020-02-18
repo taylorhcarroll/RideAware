@@ -24,7 +24,8 @@ class DashKidCard extends Component {
                         <>
                             {this.state.added === true ?
                                 <Button
-                                    variant="contained" color="primary"
+                                    variant="contained"
+                                    color="secondary"
                                     className='addItemBtn'
                                     type='primary'
                                     shape='round'
@@ -53,7 +54,7 @@ class DashKidCard extends Component {
                                 >
                                     Remove
                     </Button>} </> : ""}
-                    <p class="dash-kid-name">Name: {this.props.arrayKid.kid.nickName}</p>
+                    <p class="dash-kid-name"> {this.props.arrayKid.kid.nickName}</p>
                 </div>
             </>
         );

@@ -47,13 +47,13 @@ coral pink shit: FF6584 */
 
 .uploaded-PIC {
     max-width: 200px;
-    border-radius: 50%;
+    border-radius: 5%;
 }
 
 .userPic-Admin-Dash {
     max-width: 100%;
-    border-radius: 50%;
-    
+    border-radius: 5%;
+
 }
 
 #user-Dash {
@@ -152,6 +152,9 @@ coral pink shit: FF6584 */
 .Dash-Kid-Button {
     display: flex;
     flex-flow: row;
+    /* margin: 5px; */
+    /* padding: 5px; */
+    align-items: center;
 }
 
 .car-Header {
@@ -162,10 +165,11 @@ coral pink shit: FF6584 */
 }
 
 .mainContainer {
+    margin-top: 5em;
     display: flex;
     flex-flow: wrap;
-    margin: auto;
-    max-width: 50%;
+    /* margin: auto; */
+    /* max-width: 50%; */
     justify-content: center !important;
 }
 
@@ -186,16 +190,22 @@ coral pink shit: FF6584 */
 }
 
 .mainContainer h1 {
-    min-width: 100%;
+    /* min-width: 100%; */
+    margin-top: .5em;
     display: flex;
     background-color: rgb(82, 175, 151);
     color: white;
     justify-content: center;
-    border-radius: 25px
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 2em;
 }
 
 #navBar {
+    z-index: 1;
     display: flex;
+    position: fixed;
+    top: 0;
     /* flex-flow: wrap; */
     margin: auto;
     /* max-width: 50%; */
@@ -212,9 +222,11 @@ coral pink shit: FF6584 */
 }
 
 .dash-kid-name {
-    margin-top: 0;
+    font-size: 1.5em;
+    margin-top: .75em;
+    align-items: center;
     /* margin-bottom: 1rem; */
-    margin-left: 2em;
+    margin-left: 1em;
 }
 
 .CarDriverSearchRow h5 {
